@@ -15,7 +15,6 @@ class ProductRepositoryEloquent implements ProductRepositoryInterface
 
     public function store(array $data)
     {
-        return 'ola';
         try {
             DB::insert('insert into '.$this->table.' (name, costPrice, salePrice, type) values (?, ?, ?, ?)', $data);
             return 'Inserido com sucesso!';

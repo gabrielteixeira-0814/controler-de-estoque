@@ -38,7 +38,7 @@ class ProductService
         ];
 
         $data = $request->validate([
-            'name' => 'required|string|min:5|max:255',
+            'name' => 'required|string|min:1|max:255',
             'costPrice' => 'required|numeric',
             'salePrice' => 'required|numeric',
             'type' => 'required|string|min:5|max:255',
@@ -46,7 +46,6 @@ class ProductService
 
         $data = [$data['name'],$data['costPrice'],$data['salePrice'],$data['type']];
 
-        return 'olacc';
         return $this->repo->store($data);
     }
 
@@ -62,23 +61,34 @@ class ProductService
 
     public function update($request, $id)
     {
-        // $mensagens = [
-        //     'name.required' => 'O nome do usuário é obrigatório!',
-        //     'name.min' => 'É necessário no mínimo 5 caracteres no nome do usuário!',
-        //     'name.max' => 'É necessário no Máximo 255 caracteres no nome do usuário!',
+        // Converte number(values)
+        $request['costPrice'] = floatval($request['costPrice']);
+        $request['salePrice'] = floatval($request['salePrice']);
 
-        //     'office.required' => 'O cargo é obrigatório!',
-        //     'office.min' => 'É necessário no mínimo 5 caracteres no cargo do usuário!',
-        //     'office.max' => 'É necessário no Máximo 255 caracteres no cargo do usuário!',
+        $mensagens = [
+            'name.required' => 'O nome do produto é obrigatório!',
+            'name.min' => 'É necessário no mínimo 5 caracteres no nome do produto!',
+            'name.max' => 'É necessário no Máximo 255 caracteres no nome do produto!',
 
-        // ];
+            'costPrice.required' => 'O preço de custo é obrigatório!',
+            'costPrice.numeric' => 'O preço de custo deve ser um valor!',
 
-        // $data = $request->validate([
-        //     'name' => 'required|string|min:5|max:255',
-        //     'office' => 'required|string|min:5|max:255',
-        // ], $mensagens);
+            'salePrice.required' => 'O preço de venda é obrigatório!',
+            'salePrice.numeric' => 'O preço de venda deve ser um valor!',
 
-        // $data = [$data['name'],$data['office']];
+            'type.required' => 'O tipo do produto é obrigatório!',
+            'type.min' => 'É necessário no mínimo 5 caracteres no tipo do produto!',
+            'type.max' => 'É necessário no Máximo 255 caracteres no tipo do produto!',
+        ];
+
+        $data = $request->validate([
+            'name' => 'required|string|min:1|max:255',
+            'costPrice' => 'required|numeric',
+            'salePrice' => 'required|numeric',
+            'type' => 'required|string|min:5|max:255',
+        ], $mensagens);
+
+        $data = [$data['name'],$data['costPrice'],$data['salePrice'],$data['type']];
 
         return $this->repo->update($data, $id);
     }
