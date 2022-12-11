@@ -6,6 +6,7 @@ use App\Http\Controllers\Product\EntryProductController;
 use App\Http\Controllers\Product\ItemEntryProductController;
 use App\Http\Controllers\Product\OutputProductController;
 use App\Http\Controllers\Product\ItemOutputProductController;
+use App\Http\Controllers\Inventory\InventoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,8 +37,6 @@ Route::prefix('product')->group(function() {
     Route::post('/create', [ProductController::class, 'store']);
     Route::post('/update/{id}', [ProductController::class, 'update']);
     Route::delete('/delete/{id}', [ProductController::class, 'delete']);
-
-    Route::get('/entryProduct', [EntryProductController::class, 'getList']);
 });
 
 Route::prefix('entry')->group(function() {
@@ -70,4 +69,13 @@ Route::prefix('item')->group(function() {
     Route::post('output/product/create', [ItemOutputProductController::class, 'store']);
     Route::post('output/product/update/{id}', [ItemOutputProductController::class, 'update']);
     Route::delete('output/product/delete/{id}', [ItemOutputProductController::class, 'delete']);
+});
+
+
+Route::prefix('inventory')->group(function() {
+    Route::get('/', [InventoryController::class, 'getList']);
+    Route::get('/{id}', [InventoryController::class, 'get']);
+    Route::post('/create', [InventoryController::class, 'store']);
+    Route::post('/update/{id}', [InventoryController::class, 'update']);
+    Route::delete('/delete/{id}', [InventoryController::class, 'delete']);
 });

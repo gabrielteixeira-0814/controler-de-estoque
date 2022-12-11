@@ -10,6 +10,7 @@ use App\Repositories\ItemEntryProductRepositoryEloquent;
 use App\Repositories\OutputProductRepositoryEloquent;
 use App\Repositories\ItemOutputProductRepositoryEloquent;
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\InventoryRepositoryEloquent;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -48,5 +49,7 @@ class AppServiceProvider extends ServiceProvider
         // Item Output Product
         $this->app->bind('App\Repositories\ItemOutputProductRepositoryInterface', 'App\Repositories\ItemOutputProductRepositoryEloquent');
 
+        // Inventory
+        $this->app->bind('App\Repositories\InventoryRepositoryInterface', 'App\Repositories\InventoryRepositoryEloquent');
     }
 }
