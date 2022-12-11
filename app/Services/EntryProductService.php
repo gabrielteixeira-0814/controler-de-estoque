@@ -3,8 +3,6 @@
 namespace App\Services;
 use App\Repositories\EntryProductRepositoryInterface;
 use Validator;
-use Illuminate\Support\Facades\Storage;
-
 
 class EntryProductService
 {

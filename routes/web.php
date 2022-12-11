@@ -3,7 +3,9 @@
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Product\EntryProductController;
+use App\Http\Controllers\Product\ItemEntryProductController;
 use App\Http\Controllers\Product\OutputProductController;
+use App\Http\Controllers\Product\ItemOutputProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,10 +48,26 @@ Route::prefix('entry')->group(function() {
     Route::delete('/product/delete/{id}', [EntryProductController::class, 'delete']);
 });
 
+Route::prefix('item')->group(function() {
+    Route::get('entry/product', [ItemEntryProductController::class, 'getList']);
+    Route::get('entry/product/{id}', [ItemEntryProductController::class, 'get']);
+    Route::post('entry/product/create', [ItemEntryProductController::class, 'store']);
+    Route::post('entry/product/update/{id}', [ItemEntryProductController::class, 'update']);
+    Route::delete('entry/product/delete/{id}', [ItemEntryProductController::class, 'delete']);
+});
+
 Route::prefix('output')->group(function() {
     Route::get('/product', [OutputProductController::class, 'getList']);
     Route::get('/product/{id}', [OutputProductController::class, 'get']);
     Route::post('/product/create', [OutputProductController::class, 'store']);
     Route::post('/product/update/{id}', [OutputProductController::class, 'update']);
     Route::delete('/product/delete/{id}', [OutputProductController::class, 'delete']);
+});
+
+Route::prefix('item')->group(function() {
+    Route::get('output/product', [ItemOutputProductController::class, 'getList']);
+    Route::get('output/product/{id}', [ItemOutputProductController::class, 'get']);
+    Route::post('output/product/create', [ItemOutputProductController::class, 'store']);
+    Route::post('output/product/update/{id}', [ItemOutputProductController::class, 'update']);
+    Route::delete('output/product/delete/{id}', [ItemOutputProductController::class, 'delete']);
 });

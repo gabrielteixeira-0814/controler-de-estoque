@@ -4,11 +4,11 @@ namespace App\Repositories;
 
 Use DB;
 
-class EntryProductRepositoryEloquent implements EntryProductRepositoryInterface
+class ItemOutputProductRepositoryEloquent implements ItemOutputProductRepositoryInterface
 {
     protected $table;
 
-    public function __construct($table = 'tb_entry_product')
+    public function __construct($table = 'tb_item_output_product')
     {
         $this->table = $table;
     }
@@ -16,11 +16,8 @@ class EntryProductRepositoryEloquent implements EntryProductRepositoryInterface
     public function store(array $data)
     {
         try {
-            DB::insert('insert into '.$this->table.' (entryDate, total) values (?, ?)', $data);
-
+            DB::insert('insert into '.$this->table.' (output_product_id, product_id, quantity, value) values (?, ?, ?, ?)', $data);
             return 'Inserido com sucesso!';
-            //$response = DB::select('SELECT LAST_INSERT_ID();');
-            //return response()->json($response[0]);
 
         } catch (\Exception $e) {
 
@@ -54,10 +51,9 @@ class EntryProductRepositoryEloquent implements EntryProductRepositoryInterface
     {
         $data[] = $id;
 
-        return $data;
-
         try {
-            DB::update('update '.$this->table.' set entryDate = ?, total = ? where id = ?', $data);
+            DB::update('update '.$this->table.' set output_product_id = ?, product_id = ?, quantity = ?, value = ? where id = ?', $data);
+
             return 'Editado com sucesso!';
 
         } catch (\Exception $e) {
