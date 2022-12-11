@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Product\ProductController;
+use App\Http\Controllers\Product\EntryProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,4 +33,14 @@ Route::prefix('product')->group(function() {
     Route::post('/create', [ProductController::class, 'store']);
     Route::post('/update/{id}', [ProductController::class, 'update']);
     Route::delete('/delete/{id}', [ProductController::class, 'delete']);
+
+    Route::get('/entryProduct', [EntryProductController::class, 'getList']);
+});
+
+Route::prefix('entry')->group(function() {
+    Route::get('/product', [EntryProductController::class, 'getList']);
+    Route::get('/product/{id}', [EntryProductController::class, 'get']);
+    Route::post('/product/create', [EntryProductController::class, 'store']);
+    Route::post('/product/update/{id}', [EntryProductController::class, 'update']);
+    Route::delete('/product/delete/{id}', [EntryProductController::class, 'delete']);
 });
