@@ -17,7 +17,10 @@ class EntryProductRepositoryEloquent implements EntryProductRepositoryInterface
     {
         try {
             DB::insert('insert into '.$this->table.' (entryDate, total) values (?, ?)', $data);
-            return 'Inserido com sucesso!';
+
+            $response = DB::select('SELECT LAST_INSERT_ID();');
+
+            return response()->json($response[0]);
 
         } catch (\Exception $e) {
 
