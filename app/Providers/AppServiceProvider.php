@@ -6,6 +6,7 @@ use DB;
 use App\Repositories\UserRepositoryEloquent;
 use App\Repositories\ProductRepositoryEloquent;
 use App\Repositories\EntryProductRepositoryEloquent;
+use App\Repositories\OutputProductRepositoryEloquent;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -35,5 +36,8 @@ class AppServiceProvider extends ServiceProvider
 
         // Entry Product
         $this->app->bind('App\Repositories\EntryProductRepositoryInterface', 'App\Repositories\EntryProductRepositoryEloquent');
+
+        // Output Product
+        $this->app->bind('App\Repositories\OutputProductRepositoryInterface', 'App\Repositories\OutputProductRepositoryEloquent');
     }
 }

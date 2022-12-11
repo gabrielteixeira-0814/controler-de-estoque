@@ -3,6 +3,7 @@
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Product\EntryProductController;
+use App\Http\Controllers\Product\OutputProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,4 +44,12 @@ Route::prefix('entry')->group(function() {
     Route::post('/product/create', [EntryProductController::class, 'store']);
     Route::post('/product/update/{id}', [EntryProductController::class, 'update']);
     Route::delete('/product/delete/{id}', [EntryProductController::class, 'delete']);
+});
+
+Route::prefix('output')->group(function() {
+    Route::get('/product', [OutputProductController::class, 'getList']);
+    Route::get('/product/{id}', [OutputProductController::class, 'get']);
+    Route::post('/product/create', [OutputProductController::class, 'store']);
+    Route::post('/product/update/{id}', [OutputProductController::class, 'update']);
+    Route::delete('/product/delete/{id}', [OutputProductController::class, 'delete']);
 });
