@@ -2,17 +2,17 @@
 
 namespace App\Services;
 use App\Repositories\ProductRepositoryInterface;
+use App\Services\InventoryService;
 use Validator;
-use Illuminate\Support\Facades\Storage;
-
 
 class ProductService
 {
     private $repo;
 
-    public function __construct(ProductRepositoryInterface $repo)
+    public function __construct(ProductRepositoryInterface $repo, InventoryService $serviceInventory)
     {
         $this->repo = $repo;
+        $this->service = $service;
     }
 
     public function store($request)
@@ -43,6 +43,17 @@ class ProductService
             'salePrice' => 'required|numeric',
             'type' => 'required|string|min:5|max:255',
         ], $mensagens);
+
+
+        // Send data to stock crud
+        // $stock = [
+        //     product_id: '1',
+        //     quantity: 63
+        // ]
+
+        $stock =  [$data['name'], 0];
+        $this->service->store($stock);
+        // End
 
         $data = [$data['name'],$data['costPrice'],$data['salePrice'],$data['type']];
 
