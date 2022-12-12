@@ -4,11 +4,11 @@ namespace App\Repositories;
 
 Use DB;
 
-class ProductRequisitionRepositoryEloquent implements ProductRequisitionRepositoryInterface
+class ItemProductRequisitionRepositoryEloquent implements ItemProductRequisitionRepositoryInterface
 {
     protected $table;
 
-    public function __construct($table = 'tb_product_requisition')
+    public function __construct($table = 'tb_item_product_requisition')
     {
         $this->table = $table;
     }
@@ -16,7 +16,7 @@ class ProductRequisitionRepositoryEloquent implements ProductRequisitionReposito
     public function store(array $data)
     {
         try {
-            DB::insert('insert into '.$this->table.' (user_id, date) values (?, ?)', $data);
+            DB::insert('insert into '.$this->table.' (product_requisition_id, product_id, quantity) values (?, ?, ?)', $data);
             return 'Inserido com sucesso!';
 
         } catch (\Exception $e) {
@@ -52,7 +52,7 @@ class ProductRequisitionRepositoryEloquent implements ProductRequisitionReposito
         $data[] = $id;
 
         try {
-            DB::update('update '.$this->table.' set user_id = ?, date = ? where id = ?', $data);
+            DB::update('update '.$this->table.' set product_requisition_id = ?, product_id = ?, quantity = ? where id = ?', $data);
             return 'Editado com sucesso!';
 
         } catch (\Exception $e) {

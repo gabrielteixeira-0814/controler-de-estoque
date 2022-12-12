@@ -7,6 +7,7 @@ use App\Http\Controllers\Product\ItemEntryProductController;
 use App\Http\Controllers\Product\OutputProductController;
 use App\Http\Controllers\Product\ItemOutputProductController;
 use App\Http\Controllers\Product\ProductRequisitionController;
+use App\Http\Controllers\Product\ItemProductRequisitionController;
 use App\Http\Controllers\Inventory\InventoryController;
 
 /*
@@ -85,6 +86,15 @@ Route::prefix('requisition')->group(function() {
     Route::post('/product/create', [ProductRequisitionController::class, 'store']);
     Route::post('/product/update/{id}', [ProductRequisitionController::class, 'update']);
     Route::delete('/product/delete/{id}', [ProductRequisitionController::class, 'delete']);
+});
+
+// Item Requisition Product
+Route::prefix('item')->group(function() {
+    Route::get('requisition/product', [ItemProductRequisitionController::class, 'getList']);
+    Route::get('requisition/product/{id}', [ItemProductRequisitionController::class, 'get']);
+    Route::post('requisition/product/create', [ItemProductRequisitionController::class, 'store']);
+    Route::post('requisition/product/update/{id}', [ItemProductRequisitionController::class, 'update']);
+    Route::delete('requisition/product/delete/{id}', [ItemProductRequisitionController::class, 'delete']);
 });
 
 Route::prefix('inventory')->group(function() {

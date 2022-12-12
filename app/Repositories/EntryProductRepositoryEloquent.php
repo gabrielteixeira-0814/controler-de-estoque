@@ -54,8 +54,6 @@ class EntryProductRepositoryEloquent implements EntryProductRepositoryInterface
     {
         $data[] = $id;
 
-        return $data;
-
         try {
             DB::update('update '.$this->table.' set entryDate = ?, total = ? where id = ?', $data);
             return 'Editado com sucesso!';

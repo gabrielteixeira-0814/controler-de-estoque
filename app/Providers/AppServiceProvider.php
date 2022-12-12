@@ -10,6 +10,7 @@ use App\Repositories\ItemEntryProductRepositoryEloquent;
 use App\Repositories\OutputProductRepositoryEloquent;
 use App\Repositories\ItemOutputProductRepositoryEloquent;
 use App\Repositories\ProductRequisitionRepositoryEloquent;
+use App\Repositories\ItemProductRequisitionRepositoryEloquent;
 use App\Repositories\InventoryRepositoryEloquent;
 use Illuminate\Support\ServiceProvider;
 
@@ -52,6 +53,9 @@ class AppServiceProvider extends ServiceProvider
 
         // Requisition Product
         $this->app->bind('App\Repositories\ProductRequisitionRepositoryInterface', 'App\Repositories\ProductRequisitionRepositoryEloquent');
+
+        // Item Requisition Product
+        $this->app->bind('App\Repositories\ItemProductRequisitionRepositoryInterface', 'App\Repositories\ItemProductRequisitionRepositoryEloquent');
 
         // Inventory
         $this->app->bind('App\Repositories\InventoryRepositoryInterface', 'App\Repositories\InventoryRepositoryEloquent');
