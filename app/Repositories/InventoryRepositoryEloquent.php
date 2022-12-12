@@ -15,14 +15,23 @@ class InventoryRepositoryEloquent implements InventoryRepositoryInterface
 
     public function store(array $data)
     {
-        try {
-            DB::insert('insert into '.$this->table.' (product_id, quantity) values (?, ?)', $data);
-            return 'Inserido com sucesso!';
 
-        } catch (\Exception $e) {
+        if(DB::select('select * from '.$this->table.' where product_id = ?',[$data[0]])){
 
-            return $e->getMessage();
+            return 'Esse produto já está cadastrado no estoque!';
+
+        }else {
+            try {
+                DB::insert('insert into '.$this->table.' (product_id, quantity) values (?, ?)', $data);
+                return 'Inserido com sucesso!';
+
+            } catch (\Exception $e) {
+
+                return $e->getMessage();
+            }
         }
+
+
     }
 
     public function getList()

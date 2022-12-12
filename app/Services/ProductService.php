@@ -8,11 +8,12 @@ use Validator;
 class ProductService
 {
     private $repo;
+    private $serviceInventory;
 
     public function __construct(ProductRepositoryInterface $repo, InventoryService $serviceInventory)
     {
         $this->repo = $repo;
-        $this->service = $service;
+        $this->serviceInventory = $serviceInventory;
     }
 
     public function store($request)
@@ -20,6 +21,8 @@ class ProductService
         // Converte number(values)
         $request['costPrice'] = floatval($request['costPrice']);
         $request['salePrice'] = floatval($request['salePrice']);
+
+        //return $request;
 
         $mensagens = [
             'name.required' => 'O nome do produto é obrigatório!',
@@ -44,20 +47,20 @@ class ProductService
             'type' => 'required|string|min:5|max:255',
         ], $mensagens);
 
-
-        // Send data to stock crud
-        // $stock = [
-        //     product_id: '1',
-        //     quantity: 63
-        // ]
-
-        $stock =  [$data['name'], 0];
-        $this->service->store($stock);
-        // End
-
         $data = [$data['name'],$data['costPrice'],$data['salePrice'],$data['type']];
 
-        return $this->repo->store($data);
+        // Generated product id
+        $product_id =  $this->repo->store($data);
+
+        // Send data to stock crud
+        $stock = [
+            'product_id' => $product_id,
+            'quantity' => 0,
+            'inventory' => 'true'
+        ];
+
+        return $this->serviceInventory->store($stock);
+        // End
     }
 
     public function getList()

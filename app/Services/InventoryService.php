@@ -2,7 +2,8 @@
 
 namespace App\Services;
 use App\Repositories\InventoryRepositoryInterface;
-use Validator;
+//use Validator;
+use Illuminate\Support\Facades\Validator;
 
 class InventoryService
 {
@@ -15,24 +16,31 @@ class InventoryService
 
     public function store($request)
     {
-        // Converte number(values)
-        $request['product_id'] = intval($request['product_id']);
-        $request['quantity'] = intval($request['quantity']);
 
-        $mensagens = [
-            'product_id.required' => 'O id do produto é obrigatório!',
-            'product_id.numeric' => 'O id deve ser um valor!',
+        if(!$request['inventory']){
+            // Converte number(values)
+            $request['product_id'] = intval($request['product_id']);
+            $request['quantity'] = intval($request['quantity']);
 
-            'quantity.required' => 'A quantidade é obrigatório!',
-            'quantity.numeric' => 'A quantidade deve ser um valor!',
-        ];
+            //return $request;
 
-        $data = $request->validate([
-            'product_id' => 'required|numeric',
-            'quantity' => 'required|numeric'
-        ], $mensagens);
+            $mensagens = [
+                'product_id.required' => 'O id do produto é obrigatório!',
+                'product_id.numeric' => 'O id deve ser um valor!',
 
-        $data = [$data['product_id'],$data['quantity']];
+                'quantity.required' => 'A quantidade é obrigatório!',
+                'quantity.numeric' => 'A quantidade deve ser um valor!',
+            ];
+
+            $data = $request->validate([
+                'product_id' => 'required|numeric',
+                'quantity' => 'required|numeric'
+            ]);
+
+            $data = [$data['product_id'],$data['quantity']];
+        }else {
+            $data = [$request['product_id'],$request['quantity']];
+        }
 
         return $this->repo->store($data);
     }

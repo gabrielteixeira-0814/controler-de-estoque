@@ -17,7 +17,11 @@ class ProductRepositoryEloquent implements ProductRepositoryInterface
     {
         try {
             DB::insert('insert into '.$this->table.' (name, costPrice, salePrice, type) values (?, ?, ?, ?)', $data);
-            return 'Inserido com sucesso!';
+            $response = DB::select('SELECT LAST_INSERT_ID() as id');
+            $response = $response[0];
+            $response = $response->id;
+
+            return $response;
 
         } catch (\Exception $e) {
 
