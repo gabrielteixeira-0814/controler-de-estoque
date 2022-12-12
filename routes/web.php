@@ -6,6 +6,7 @@ use App\Http\Controllers\Product\EntryProductController;
 use App\Http\Controllers\Product\ItemEntryProductController;
 use App\Http\Controllers\Product\OutputProductController;
 use App\Http\Controllers\Product\ItemOutputProductController;
+use App\Http\Controllers\Product\ProductRequisitionController;
 use App\Http\Controllers\Inventory\InventoryController;
 
 /*
@@ -23,6 +24,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// User
 Route::prefix('user')->group(function() {
     Route::get('/', [UserController::class, 'getList']);
     Route::get('/{id}', [UserController::class, 'get']);
@@ -31,6 +33,7 @@ Route::prefix('user')->group(function() {
     Route::delete('/delete/{id}', [UserController::class, 'delete']);
 });
 
+// Product
 Route::prefix('product')->group(function() {
     Route::get('/', [ProductController::class, 'getList']);
     Route::get('/{id}', [ProductController::class, 'get']);
@@ -39,6 +42,7 @@ Route::prefix('product')->group(function() {
     Route::delete('/delete/{id}', [ProductController::class, 'delete']);
 });
 
+// Entry Product
 Route::prefix('entry')->group(function() {
     Route::get('/product', [EntryProductController::class, 'getList']);
     Route::get('/product/{id}', [EntryProductController::class, 'get']);
@@ -47,6 +51,7 @@ Route::prefix('entry')->group(function() {
     Route::delete('/product/delete/{id}', [EntryProductController::class, 'delete']);
 });
 
+// Item Entry Product
 Route::prefix('item')->group(function() {
     Route::get('entry/product', [ItemEntryProductController::class, 'getList']);
     Route::get('entry/product/{id}', [ItemEntryProductController::class, 'get']);
@@ -55,6 +60,7 @@ Route::prefix('item')->group(function() {
     Route::delete('entry/product/delete/{id}', [ItemEntryProductController::class, 'delete']);
 });
 
+// OutPut Product
 Route::prefix('output')->group(function() {
     Route::get('/product', [OutputProductController::class, 'getList']);
     Route::get('/product/{id}', [OutputProductController::class, 'get']);
@@ -63,6 +69,7 @@ Route::prefix('output')->group(function() {
     Route::delete('/product/delete/{id}', [OutputProductController::class, 'delete']);
 });
 
+// Item Output Product
 Route::prefix('item')->group(function() {
     Route::get('output/product', [ItemOutputProductController::class, 'getList']);
     Route::get('output/product/{id}', [ItemOutputProductController::class, 'get']);
@@ -71,6 +78,14 @@ Route::prefix('item')->group(function() {
     Route::delete('output/product/delete/{id}', [ItemOutputProductController::class, 'delete']);
 });
 
+// Requisition Product
+Route::prefix('requisition')->group(function() {
+    Route::get('/product', [ProductRequisitionController::class, 'getList']);
+    Route::get('/product/{id}', [ProductRequisitionController::class, 'get']);
+    Route::post('/product/create', [ProductRequisitionController::class, 'store']);
+    Route::post('/product/update/{id}', [ProductRequisitionController::class, 'update']);
+    Route::delete('/product/delete/{id}', [ProductRequisitionController::class, 'delete']);
+});
 
 Route::prefix('inventory')->group(function() {
     Route::get('/', [InventoryController::class, 'getList']);
