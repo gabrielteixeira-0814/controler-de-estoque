@@ -36,6 +36,17 @@ class UserRepositoryEloquent implements UserRepositoryInterface
         }
     }
 
+    public function getListSearch($request)
+    {
+        try {
+            return DB::select("select * from" .$this->table. "where name like '%'".$request."'%'");
+
+        } catch (\Exception $e) {
+
+            return $e->getMessage();
+        }
+    }
+
     public function get($id)
     {
         try {

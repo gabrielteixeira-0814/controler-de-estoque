@@ -21,9 +21,19 @@ class UserController extends Controller
         return view('user');
     }
 
-    public function getList()
+    public function formUser()
     {
-        return $this->service->getList();
+        return view('form.userFormModal')->render();
+    }
+
+    public function getList(Request $request)
+    {
+        //if($request->ajax()){
+
+            $search = !$request['search'] ? true : false;
+            $listUser = $this->service->getList($request);
+            return view('list.listUser', compact('listUser', 'search'))->render();
+        //}
     }
 
     public function get($id)

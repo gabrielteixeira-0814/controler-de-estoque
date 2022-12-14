@@ -28,7 +28,8 @@ Route::get('/', function () {
 // User
 Route::prefix('user')->group(function() {
     Route::get('/', [UserController::class, 'index']);
-    Route::get('/users', [UserController::class, 'getList']);
+    Route::get('/list', [UserController::class, 'getList']);
+    Route::get('/form', [UserController::class, 'formUser'])->name('formUser');
     Route::get('/{id}', [UserController::class, 'get']);
     Route::post('/create', [UserController::class, 'store']);
     Route::post('/update/{id}', [UserController::class, 'update']);

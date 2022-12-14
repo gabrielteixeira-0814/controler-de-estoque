@@ -1,25 +1,13 @@
  /*** Table Users ***/
 
  $(document).ready(function(){
-    carregarTabelaUser(0);
-
+    carregarTabelaUser();
     //$("#successDelete").hide(); // hide message success delete
-
 });
 
-// Pagination
-$(document).on('click', '.paginationUser a', function(e) {
-    e.preventDefault();
-    var pagina = $(this).attr('href').split('page=')[1];
-    carregarTabelaUser(pagina);
-});
 
-$("#search").keyup(function() {
-    carregarTabelaUser(0);
-  });
-
-// Search user
-function carregarTabelaUser(pagina) {
+// Table user
+function carregarTabelaUser() {
 
      // Gif
      $('.users_data').html('<div class="d-flex justify-content-center mt-3 loading">Loading&#8230;</div>');
@@ -27,11 +15,10 @@ function carregarTabelaUser(pagina) {
     var search = $("#search").val();
 
     $.ajax({
-    url: "/users/list" + "?page=" + pagina,
+    url: "/user/list",
     method: 'GET',
-    data: {search: search}
+    data: ''
         }).done(function(data){
-        // console.log(data);
 
         setTimeout(function() {
             if(data) {
@@ -40,5 +27,34 @@ function carregarTabelaUser(pagina) {
                 $('.users_data').html('<div class="">Error</div>');
             }
         }, 1000);
+    });
+
+    // Return Form user
+    $(document).on('click', '.createUser', function(e) {
+
+        $("#successCreate").hide(); //hide message
+        $(".modalFormGif").hide();
+        $("#gifForm").show();
+
+        $.ajax({
+            url: "user/form",
+            method: 'GET',
+            data: ''
+                }).done(function(data){
+
+                setTimeout(function() {
+                    if(data) {
+
+                         // Gif
+                         $("#gifForm").hide();
+
+                         $(".modalFormGif").show();
+
+                        $('.form-user').html(data);
+                    }else {
+                        $('.form-user').html('<div class="">Error</div>');
+                    }
+                }, 500);
+            });
     });
 }

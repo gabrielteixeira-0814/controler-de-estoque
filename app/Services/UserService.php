@@ -38,9 +38,16 @@ class UserService
         return $this->repo->store($data);
     }
 
-    public function getList()
+    public function getList($request)
     {
-        return $this->repo->getList();
+        if($request['search']){
+            $users = $this->repo->getListSearch($request['search']);
+            return $users;
+
+        }else {
+            $users = $this->repo->getList();
+            return $users;
+        }
     }
 
     public function get($id)

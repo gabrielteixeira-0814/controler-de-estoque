@@ -30,14 +30,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/d712964458.js" crossorigin="anonymous"></script>
 
-    {{-- <script>
-        var myModal = document.getElementById('myModal')
-        var myInput = document.getElementById('myInput')
-        myModal.addEventListener('shown.bs.modal', function () {
-            myInput.focus()
-        });
-    </script> --}}
-
     @yield('script')
 </body>
 </html>
