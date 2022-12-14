@@ -16,6 +16,11 @@ class UserController extends Controller
         $this->service = $service;
     }
 
+    public function index()
+    {
+        return view('user');
+    }
+
     public function getList()
     {
         return $this->service->getList();

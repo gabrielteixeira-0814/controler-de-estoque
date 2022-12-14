@@ -14,7 +14,7 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Relatórios
                     </a>
-                    <ul class="dropdown-menu ml-5" aria-labelledby="navbarDropdownMenuLink">
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="margin">
                         <li><a class="dropdown-item" href="#">Relatório de Entrada</a></li>
                         <li><a class="dropdown-item" href="#">Relatório de Saída</a></li>
                     </ul>
@@ -24,3 +24,7 @@
             </div>
         </nav>
     @show
+
+@section('script')
+
+@endsection

@@ -27,7 +27,8 @@ Route::get('/', function () {
 
 // User
 Route::prefix('user')->group(function() {
-    Route::get('/', [UserController::class, 'getList']);
+    Route::get('/', [UserController::class, 'index']);
+    Route::get('/users', [UserController::class, 'getList']);
     Route::get('/{id}', [UserController::class, 'get']);
     Route::post('/create', [UserController::class, 'store']);
     Route::post('/update/{id}', [UserController::class, 'update']);
