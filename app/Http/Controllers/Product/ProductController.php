@@ -25,9 +25,11 @@ class ProductController extends Controller
         return view('form.productFormModal')->render();
     }
 
-    public function getList()
+    public function getList(Request $request)
     {
-        return $this->service->getList();
+        $search = !$request['search'] ? true : false;
+        $listProduct = $this->service->getList($request);
+        return view('list.listProduct', compact('listProduct', 'search'))->render();
     }
 
     public function get($id)

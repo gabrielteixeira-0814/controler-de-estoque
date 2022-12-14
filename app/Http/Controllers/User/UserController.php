@@ -23,7 +23,7 @@ class UserController extends Controller
 
     public function formUser()
     {
-        return view('form.userFormModal')->render();
+        return view('form.productFormModal')->render();
     }
 
     public function getList(Request $request)

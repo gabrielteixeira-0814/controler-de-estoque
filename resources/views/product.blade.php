@@ -18,18 +18,18 @@
           </div>
         </div>
         <div class="col-6 py-3 text-end">
-          <button type="button" class="btn btn-success createUser" data-toggle="modal" data-target="#userForm" >Usuário <i class='bx bx-user nav_icon' style="font-size: 15px"></i></button>
+          <button type="button" class="btn btn-success createProduct" data-toggle="modal" data-target="#ProductForm" >Produto <i class='bx bx-package nav_icon' style="font-size: 15px"></i></button>
         </div>
-          <div class="users_data"></div>
+          <div class="products_data"></div>
       </div>
   </div>
 
   <!-- Modal form Users -->
-<div class="modal fade" id="userForm" tabindex="-1" role="dialog" aria-labelledby="modalFomrUser" aria-hidden="true">
+<div class="modal fade" id="productForm" tabindex="-1" role="dialog" aria-labelledby="modalFomrProduct" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="modalFomrUser" style="font-weight: bold; color: #0099B2">Criar Usuário</h5>
+        <h5 class="modal-title" id="modalFomrUser" style="font-weight: bold; color: #0099B2">Criar Produto</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -37,7 +37,7 @@
       <div class="row justify-content-center">
         <div class="col-10 mt-2">
           <div class="alert alert-success text-center" id="successCreate" role="alert">
-            Usuário criado com sucesso!
+            Produto criado com sucesso!
           </div>
         </div>
       </div>
@@ -57,7 +57,10 @@
       </div>
 
       <div class="modal-body modalFormGif">
-          <div class="form-user"></div>
+
+          {{-- Form Product --}}
+          <div class="form-product"></div>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary closeCreate" data-dismiss="modal">Fechar</button>
@@ -127,5 +130,5 @@
 
 @section('script')
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/user.js') }}" defer></script>
+    <script src="{{ asset('js/product.js') }}" defer></script>
 @endsection

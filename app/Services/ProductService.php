@@ -63,9 +63,16 @@ class ProductService
         // End
     }
 
-    public function getList()
+    public function getList($request)
     {
-        return $this->repo->getList();
+        if($request['search']){
+            $product = $this->repo->getListSearch($request['search']);
+            return $product;
+
+        }else {
+            $product = $this->repo->getList();
+            return $product;
+        }
     }
 
     public function get($id)
