@@ -15,6 +15,16 @@ class ProductController extends Controller
         $this->service = $service;
     }
 
+    public function index()
+    {
+        return view('product');
+    }
+
+    public function formUser()
+    {
+        return view('form.productFormModal')->render();
+    }
+
     public function getList()
     {
         return $this->service->getList();

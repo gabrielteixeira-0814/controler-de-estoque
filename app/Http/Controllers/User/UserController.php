@@ -28,12 +28,9 @@ class UserController extends Controller
 
     public function getList(Request $request)
     {
-        //if($request->ajax()){
-
-            $search = !$request['search'] ? true : false;
-            $listUser = $this->service->getList($request);
-            return view('list.listUser', compact('listUser', 'search'))->render();
-        //}
+        $search = !$request['search'] ? true : false;
+        $listUser = $this->service->getList($request);
+        return view('list.listUser', compact('listUser', 'search'))->render();
     }
 
     public function get($id)
@@ -46,9 +43,9 @@ class UserController extends Controller
         return $this->service->store($request);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        return $this->service->update($request, $id);
+        return $this->service->update($request, $request['id']);
     }
 
     public function delete($id)

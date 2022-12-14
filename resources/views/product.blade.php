@@ -5,11 +5,11 @@
     <div class="row justify-content-center">
       <div class="col-10 mt-5" id="successDelete">
         <div class="alert alert-success text-center" role="alert">
-          Usuário deletado com sucesso!
+          Produto deletado com sucesso!
         </div>
       </div>
     </div>
-    <div class="h2 pt-5" style="font-weight: bold; color: #0099B2">Usuários</div>
+    <div class="h2 pt-5" style="font-weight: bold; color: #0099B2">Produto</div>
       <div class="row bg-white rounded px-3">
         <div class="col-6 py-4">
           <div>
