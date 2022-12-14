@@ -22,7 +22,7 @@ use App\Http\Controllers\Inventory\InventoryController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 // User
