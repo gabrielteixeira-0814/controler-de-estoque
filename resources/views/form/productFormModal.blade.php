@@ -16,7 +16,10 @@
         </div>
         <div class="mb-3">
           <label for="type" class="form-label">Tipo</label>
-          <input type="text" class="form-control" id="type" name="type">
+          <select class="form-select" id="type" name="type" aria-label="Default select example">
+            <option selected value="1">Simples</option>
+            <option value="2">Composto</option>
+          </select>
         </div>
     </form>
 </div>

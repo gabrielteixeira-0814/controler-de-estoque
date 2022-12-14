@@ -26,10 +26,10 @@
                 {{ $product->name }}
             </td>
             <td>
-                {{ $product->costPrice }}
+                {{ str_replace('.', ',', $product->costPrice) }}
             </td>
             <td>
-                {{ $product->salePrice }}
+                {{ str_replace('.', ',', $product->salePrice) }}
             </td>
             <td>
                 {{ $product->type }}
