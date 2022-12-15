@@ -10,6 +10,7 @@ use App\Http\Controllers\Product\ItemOutputProductController;
 use App\Http\Controllers\Product\ProductRequisitionController;
 use App\Http\Controllers\Product\ItemProductRequisitionController;
 use App\Http\Controllers\Inventory\InventoryController;
+use App\Http\Controllers\Report\ReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -110,4 +111,10 @@ Route::prefix('inventory')->group(function() {
     Route::post('/create', [InventoryController::class, 'store']);
     Route::post('/update/{id}', [InventoryController::class, 'update']);
     Route::delete('/delete/{id}', [InventoryController::class, 'delete']);
+});
+
+// Report
+Route::prefix('report')->group(function() {
+    Route::post('/', [ReportController::class, 'entryReport'])->name('report');
+    Route::post('/outPut', [ReportController::class, 'outputReport']);
 });

@@ -112,7 +112,7 @@
               <input type="hidden" class="id" id="id" name="id">
               <div class="mb-3">
                 <label for="entryDate" class="form-label">Data da Entrada</label>
-                <input type="text" class="form-control entryDate" id="entryDate" name="entryDate">
+                <input type="text" class="form-control entryDate" id="entryDate" name="entryDate"  placeholder="01/01/2022">
               </div>
               <div class="mb-3">
                 <label for="total" class="form-label">Total</label>

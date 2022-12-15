@@ -37,21 +37,23 @@
         </div>
         <div class="modal-body modalFormGif">
             <div class="form-entryProduct">
-                <form action="" class="form_entryProduct" id="form_entryProduct">
+                <form method="POST" action="{{ route('report') }} " id="logout-form" class="form_entryProduct" id="form_entryProduct">
+                    @csrf
                     <div class="mb-3">
                       <label for="dateIni" class="form-label">Data Inicial</label>
-                      <input type="text" class="form-control" id="dateIni" name="dateIni" aria-describedby="dateIni">
+                      <input type="text" class="form-control" id="dateIni" name="dateIni" aria-describedby="dateIni" placeholder="01/01/2022">
                     </div>
                     <div class="mb-3">
                         <label for="dateFin" class="form-label">Data Final</label>
-                        <input type="text" class="form-control" id="dateFin" name="dateFin" aria-describedby="dateFin">
+                        <input type="text" class="form-control" id="dateFin" name="dateFin" aria-describedby="dateFin" placeholder="31/01/2022">
                       </div>
                 </form>
             </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary closeCreate" data-dismiss="modal">Fechar</button>
-          <button type="button" class="btn btn-primary saveForm">Executar</button>
+          <button type="button" class="btn btn-primary saveForm" onclick="event.preventDefault();
+          document.getElementById('logout-form').submit();">Executar</button>
         </div>
       </div>
     </div>
