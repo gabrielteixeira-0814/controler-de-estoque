@@ -74,8 +74,8 @@
 
 ## 📝 License
 
-Este projeto está sob a licença do MIT. Veja o arquivo <a href="https://github.com/gabrielteixeira-0814/controler-de-estoque/blob/main/LICENCE">LICENCE</a> para mais detalhes.
+Este projeto está sob a licença do MIT. Veja o arquivo <a href="https://github.com/gabrielteixeira-0814/controler-de-estoque/blob/master/LICENCE">LICENCE</a> para mais detalhes.
 
----
+--- 
 
 <p align="center">Created by Gabriel Teixeira</p>
