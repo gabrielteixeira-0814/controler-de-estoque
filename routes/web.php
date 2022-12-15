@@ -103,6 +103,7 @@ Route::prefix('item')->group(function() {
     Route::delete('requisition/product/delete/{id}', [ItemProductRequisitionController::class, 'delete']);
 });
 
+// Inventory
 Route::prefix('inventory')->group(function() {
     Route::get('/', [InventoryController::class, 'getList']);
     Route::get('/{id}', [InventoryController::class, 'get']);
