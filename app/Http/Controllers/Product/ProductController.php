@@ -42,8 +42,9 @@ class ProductController extends Controller
         return $this->service->store($request);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
+        $id =  $request['id'];
         return $this->service->update($request, $id);
     }
 

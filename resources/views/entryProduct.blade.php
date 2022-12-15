@@ -14,7 +14,7 @@
         </div>
       </div>
     </div>
-    <div class="h2 pt-5" style="font-weight: bold; color: #0099B2">Produto</div>
+    <div class="h2 pt-5" style="font-weight: bold; color: #0099B2">Entrada de Produto</div>
       <div class="row bg-white rounded px-3">
         <div class="col-6 py-4">
           <div>

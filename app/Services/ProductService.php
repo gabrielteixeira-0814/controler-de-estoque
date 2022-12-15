@@ -85,8 +85,13 @@ class ProductService
     public function update($request, $id)
     {
         // Converte number(values)
+        $request['costPrice'] = str_replace(',', '.', $request['costPrice']);
         $request['costPrice'] = floatval($request['costPrice']);
+
+        $request['salePrice'] = str_replace(',', '.', $request['salePrice']);
         $request['salePrice'] = floatval($request['salePrice']);
+
+        $request['type'] = intval($request['type']);
 
         $mensagens = [
             'name.required' => 'O nome do produto é obrigatório!',
@@ -100,15 +105,14 @@ class ProductService
             'salePrice.numeric' => 'O preço de venda deve ser um valor!',
 
             'type.required' => 'O tipo do produto é obrigatório!',
-            'type.min' => 'É necessário no mínimo 5 caracteres no tipo do produto!',
-            'type.max' => 'É necessário no Máximo 255 caracteres no tipo do produto!',
+            'type.numeric' => 'O tipo do produto deve ser um valor!',
         ];
 
         $data = $request->validate([
             'name' => 'required|string|min:1|max:255',
             'costPrice' => 'required|numeric',
             'salePrice' => 'required|numeric',
-            'type' => 'required|string|min:5|max:255',
+            'type' => 'required|numeric',
         ], $mensagens);
 
         $data = [$data['name'],$data['costPrice'],$data['salePrice'],$data['type']];

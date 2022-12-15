@@ -3,6 +3,7 @@
  $(document).ready(function(){
     carregarTabelaProduct();
     $("#successDelete").hide(); // hide message success delete
+    $("#errorDelete").hide();
 });
 
 
@@ -101,7 +102,7 @@ $(document).on('click', '.saveForm', function(e) {
 });
 
 
-// Show user
+// Show product
 $(document).on('click', '.edit', function(e) {
 
     $("#successEdit").hide(); //hide message
@@ -111,11 +112,10 @@ $(document).on('click', '.edit', function(e) {
     var id = $(this).val();
 
     $.ajax({
-        url: "user/"+ id + "",
+        url: "product/"+ id + "",
         method: 'GET',
         data: ""
             }).done(function(data){
-            //console.log(data[0]);
 
             setTimeout(function() {
                 if(data) {
@@ -125,9 +125,12 @@ $(document).on('click', '.edit', function(e) {
 
                     $(".modalGif").show();
 
-                    $('.id').val(data[0].id)
-                    $('.name').val(data[0].name)
-                    $('.office').val(data[0].office)
+                    $('.id').val(data[0].id);
+                    $('.name').val(data[0].name);
+                    data[0].costPrice ? $('.costPrice').val(data[0].costPrice.toLocaleString('pt-br', {minimumFractionDigits: 2})) : $('.costPrice').val(0)
+                    $('.salePrice').val(data[0].salePrice.toLocaleString('pt-br', {minimumFractionDigits: 2}));
+		            $('#type option[id="'+data[0].type+'"]').attr("selected", "selected");
+
                 }else {
                     console.log('Error');
                 }
@@ -136,18 +139,18 @@ $(document).on('click', '.edit', function(e) {
 });
 
 
-// Edit user
+// Edit product
 $(document).on('click', '.saveEdit', function(e) {
     $(".saveEdit").show();
 
-    value = $(".form_user_edit").serialize();
+    value = $(".form_product_edit").serialize();
 
     $.ajax({
-        url: "/user/update",
+        url: "/product/update",
         method: 'POST',
         data: value,
             }).done(function(data){
-
+                console.log(data);
             if(data) {
                 $("#successEdit").show();
                 $(".saveEdit").hide();
@@ -178,17 +181,16 @@ $(document).on('click', '.closeEdit', function(e) {
 });
 
 
-// Delete user
+// Delete product
 $(document).on('click', '.delete', function(e) {
 
     var id = $(this).val();
     $.ajax({
-        url: "user/delete/"+ id + "",
+        url: "product/delete/"+ id + "",
         method: 'DELETE',
         data: ""
             }).done(function(data){
-
-                if(data) {
+                if(data != 'Error') {
                     $("#successDelete").show();
                     carregarTabelaProduct(0);
 
@@ -198,6 +200,7 @@ $(document).on('click', '.delete', function(e) {
 
                 }else {
                     console.log('Error');
+                    $("#errorDelete").show();
                 }
         });
 });

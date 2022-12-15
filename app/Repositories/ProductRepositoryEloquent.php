@@ -73,7 +73,7 @@ class ProductRepositoryEloquent implements ProductRepositoryInterface
 
         } catch (\Exception $e) {
 
-            return $e->getMessage();
+            return 'Error';
         }
     }
 }

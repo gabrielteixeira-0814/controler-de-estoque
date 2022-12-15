@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Product\EntryProductController;
@@ -21,9 +22,8 @@ use App\Http\Controllers\Inventory\InventoryController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // User
 Route::prefix('user')->group(function() {
