@@ -15,6 +15,9 @@
         <th scope="col">
             Tipo
         </th>
+        <th scope="col">
+            Ações
+        </th>
     </tr>
 
     @foreach ($listProduct as $product)

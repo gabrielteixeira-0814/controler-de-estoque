@@ -3,6 +3,7 @@
 namespace App\Services;
 use App\Repositories\EntryProductRepositoryInterface;
 use Validator;
+use DateTime;
 
 class EntryProductService
 {
@@ -17,6 +18,9 @@ class EntryProductService
     {
         // Converte number(values)
         $request['total'] = intval($request['total']);
+
+        $request['entryDate'] = DateTime::createFromFormat('d/m/Y H:i:s', $request['entryDate'].' 00:00:00');
+        $request['entryDate'] = $request['entryDate']->format('Y-m-d');
 
         $mensagens = [
             'entryDate.required' => 'A data de entrada é obrigatório!',
@@ -35,9 +39,16 @@ class EntryProductService
         return $this->repo->store($data);
     }
 
-    public function getList()
+    public function getList($request)
     {
-        return $this->repo->getList();
+        if($request['search']){
+            $entryProduct = $this->repo->getListSearch($request['search']);
+            return $entryProduct;
+
+        }else {
+            $entryProduct = $this->repo->getList();
+            return $entryProduct;
+        }
     }
 
     public function get($id)
@@ -49,6 +60,9 @@ class EntryProductService
     {
         // Converte number(values)
         $request['total'] = intval($request['total']);
+
+        $request['entryDate'] = DateTime::createFromFormat('d/m/Y H:i:s', $request['entryDate'].' 00:00:00');
+        $request['entryDate'] = $request['entryDate']->format('Y-m-d');
 
         $mensagens = [
             'entryDate.required' => 'A data de entrada é obrigatório!',

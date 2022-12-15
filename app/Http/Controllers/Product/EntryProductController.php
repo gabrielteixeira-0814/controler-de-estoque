@@ -15,9 +15,21 @@ class EntryProductController extends Controller
         $this->service = $service;
     }
 
-    public function getList()
+    public function index()
     {
-        return $this->service->getList();
+        return view('entryProduct');
+    }
+
+    public function formEntryProduct()
+    {
+        return view('form.entryProductFormModal')->render();
+    }
+
+    public function getList(Request $request)
+    {
+        $search = !$request['search'] ? true : false;
+        $listEntryProduct = $this->service->getList($request);
+        return view('list.listEntryProduct', compact('listEntryProduct', 'search'))->render();
     }
 
     public function get($id)
@@ -30,8 +42,9 @@ class EntryProductController extends Controller
         return $this->service->store($request);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
+        $id = $request['id'];
         return $this->service->update($request, $id);
     }
 

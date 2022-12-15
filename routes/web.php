@@ -49,10 +49,12 @@ Route::prefix('product')->group(function() {
 
 // Entry Product
 Route::prefix('entry')->group(function() {
-    Route::get('/product', [EntryProductController::class, 'getList']);
+    Route::get('/product', [EntryProductController::class, 'index'])->name('pageEntryProduct');
+    Route::get('/product/form', [EntryProductController::class, 'formEntryProduct'])->name('formEntryProduct');
+    Route::get('/product/list', [EntryProductController::class, 'getList']);
     Route::get('/product/{id}', [EntryProductController::class, 'get']);
     Route::post('/product/create', [EntryProductController::class, 'store']);
-    Route::post('/product/update/{id}', [EntryProductController::class, 'update']);
+    Route::post('/product/update', [EntryProductController::class, 'update']);
     Route::delete('/product/delete/{id}', [EntryProductController::class, 'delete']);
 });
 

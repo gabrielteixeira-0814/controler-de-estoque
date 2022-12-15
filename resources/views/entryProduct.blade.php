@@ -5,12 +5,7 @@
     <div class="row justify-content-center">
       <div class="col-10 mt-5" id="successDelete">
         <div class="alert alert-success text-center" role="alert">
-          Produto deletado com sucesso!
-        </div>
-      </div>
-      <div class="col-10 mt-5" id="errorDelete">
-        <div class="alert alert-danger text-center" role="alert">
-          Primeiro exclua o produto do cadastro de estoque!
+          Entrada de produto deletado com sucesso!
         </div>
       </div>
     </div>
@@ -23,18 +18,18 @@
           </div>
         </div>
         <div class="col-6 py-3 text-end">
-          <button type="button" class="btn btn-success createProduct" data-toggle="modal" data-target="#ProductForm" >Produto <i class='bx bx-package nav_icon' style="font-size: 15px"></i></button>
+          <button type="button" class="btn btn-success createEntryProduct" data-toggle="modal" data-target="#EntryProductForm">Entrada de produto <i class='bx bx-package nav_icon' style="font-size: 15px"></i></button>
         </div>
-          <div class="products_data"></div>
+          <div class="entryProducts_data"></div>
       </div>
   </div>
 
   <!-- Modal form Users -->
-<div class="modal fade" id="productForm" tabindex="-1" role="dialog" aria-labelledby="modalFomrProduct" aria-hidden="true">
+<div class="modal fade" id="entryProductForm" tabindex="-1" role="dialog" aria-labelledby="modalFomrEntryProduct" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="modalFomrUser" style="font-weight: bold; color: #0099B2">Criar Produto</h5>
+        <h5 class="modal-title" id="modalFomrEntryProduct" style="font-weight: bold; color: #0099B2">Criar Entrada de Produto</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -42,7 +37,7 @@
       <div class="row justify-content-center">
         <div class="col-10 mt-2">
           <div class="alert alert-success text-center" id="successCreate" role="alert">
-            Produto criado com sucesso!
+            Entrada de produto criado com sucesso!
           </div>
         </div>
       </div>
@@ -64,7 +59,7 @@
       <div class="modal-body modalFormGif">
 
           {{-- Form Product --}}
-          <div class="form-product"></div>
+          <div class="form-entryProduct"></div>
 
       </div>
       <div class="modal-footer">
@@ -80,11 +75,11 @@
 
 
 <!-- Modal Edit -->
-<div class="modal fade" id="product" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="entryProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold; color: #0099B2">Editar Usuário</h5>
+        <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold; color: #0099B2">Editar Entrada de produto</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -92,7 +87,7 @@
       <div class="row justify-content-center">
         <div class="col-10 mt-2">
           <div class="alert alert-success text-center" id="successEdit" role="alert">
-            Produto editado com sucesso!
+            Entrada de Produto editado com sucesso!
           </div>
         </div>
       </div>
@@ -113,26 +108,15 @@
       </div>
 
       <div class="modal-body modalGif">
-          <form action="" class="form_product_edit" id="form_product_edit">
+          <form action="" class="form_product_edit" id="form_entryProduct_edit">
               <input type="hidden" class="id" id="id" name="id">
               <div class="mb-3">
-                <label for="name" class="form-label">Nome</label>
-                <input type="text" class="form-control name" id="name" name="name" aria-describedby="name">
+                <label for="entryDate" class="form-label">Data da Entrada</label>
+                <input type="text" class="form-control entryDate" id="entryDate" name="entryDate">
               </div>
               <div class="mb-3">
-                <label for="costPrice" class="form-label">Preço de custo</label>
-                <input type="text" class="form-control costPrice" id="costPrice" name="costPrice">
-              </div>
-              <div class="mb-3">
-                <label for="salePrice" class="form-label">Preço de venda</label>
-                <input type="text" class="form-control salePrice" id="salePrice" name="salePrice">
-              </div>
-              <div class="mb-3">
-                <label for="type" class="form-label">Tipo</label>
-                <select class="form-select" id="type" name="type" aria-label="Default select example">
-                    <option id = "1" value="1">Simples</option>
-                    <option id = "2" value="2">Composto</option>
-                  </select>
+                <label for="total" class="form-label">Total</label>
+                <input type="text" class="form-control total" id="total" name="total">
               </div>
           </form>
       </div>
@@ -146,5 +130,5 @@
 
 @section('script')
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/product.js') }}" defer></script>
+    <script src="{{ asset('js/entryProduct.js') }}" defer></script>
 @endsection

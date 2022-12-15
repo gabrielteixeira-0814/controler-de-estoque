@@ -1,46 +1,33 @@
 <table class='table'>
     <tr>
         <th scope="col">
-            Código
+            Código de entrada
         </th>
         <th scope="col">
-            Nome
+            Data de Entrada
         </th>
         <th scope="col">
-            Preço de custo (R$)
+            Total
         </th>
         <th scope="col">
-            Preço de venda (R$)
-        </th>
-        <th scope="col">
-            Tipo
+            Ações
         </th>
     </tr>
 
-    @foreach ($listProduct as $product)
+    @foreach ($listEntryProduct as $entryProduct)
         <tr>
             <td>
-                {{ $product->id }}
+                {{ $entryProduct->id }}
             </td>
             <td>
-                {{ $product->name }}
+                {{ date("d/m/Y", strtotime($entryProduct->entryDate)) }}
             </td>
             <td>
-                {{ $product->costPrice ? str_replace('.', ',', $product->costPrice) : "-" }}
+                {{ $entryProduct->total ? str_replace('.', ',', $entryProduct->total) : "-" }}
             </td>
             <td>
-                {{ str_replace('.', ',', $product->salePrice) }}
-            </td>
-            <td>
-                @if ($product->type == 1)
-                    simples
-                @else
-                    composto
-                @endif
-            </td>
-            <td>
-                <button class='edit productButton' id='editProduct' value="{{ $product->id }}" name="{{ $product->id }}" data-toggle="modal" data-target="#product" style="color: #0099B2; font-size: 16px;"><i class='bx bxs-edit-alt'></i></button>
-                <button class='delete productButton' id='deleteProduct' value="{{ $product->id }}" name="{{ $product->id }}" style="color: #e93535; font-size: 16px;" ><i class='bx bxs-trash'></i></button>
+                <button class='edit entryProductButton' id='editEntryProduct' value="{{ $entryProduct->id }}" name="{{ $entryProduct->id }}" data-toggle="modal" data-target="#entryProduct" style="color: #0099B2; font-size: 16px;"><i class='bx bxs-edit-alt'></i></button>
+                <button class='delete entryProductButton' id='deleteEntryProduct' value="{{ $entryProduct->id }}" name="{{ $entryProduct ->id }}" style="color: #e93535; font-size: 16px;" ><i class='bx bxs-trash'></i></button>
             </td>
         </tr>
     @endforeach
