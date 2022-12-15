@@ -1,0 +1,27 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.nav-link, .dropdown-item {
+    color: #ff5400;
+    font-weight: bold;
+}
+
+.bloco-link {
+    text-decoration: none;
+}
+
+.bloco {
+    background-color: #ff5400;
+}
+
+/* header end */
+
+.actionButton {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+}

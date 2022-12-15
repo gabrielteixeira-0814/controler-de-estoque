@@ -42,8 +42,8 @@
                 @endif
             </td>
             <td>
-                <button class='edit productButton' id='editProduct' value="{{ $product->id }}" name="{{ $product->id }}" data-toggle="modal" data-target="#product" style="color: #0099B2; font-size: 16px;"><i class='bx bxs-edit-alt'></i></button>
-                <button class='delete productButton' id='deleteProduct' value="{{ $product->id }}" name="{{ $product->id }}" style="color: #e93535; font-size: 16px;" ><i class='bx bxs-trash'></i></button>
+                <button class='edit actionButton' id='editProduct' value="{{ $product->id }}" name="{{ $product->id }}" data-toggle="modal" data-target="#product" style="color: #0099B2; font-size: 16px;"><i class='bx bxs-edit-alt'></i></button>
+                <button class='delete actionButton' id='deleteProduct' value="{{ $product->id }}" name="{{ $product->id }}" style="color: #e93535; font-size: 16px;" ><i class='bx bxs-trash'></i></button>
             </td>
         </tr>
     @endforeach

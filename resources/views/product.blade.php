@@ -14,13 +14,13 @@
         </div>
       </div>
     </div>
-    <div class="h2 pt-5" style="font-weight: bold; color: #0099B2">Produto</div>
+    <div class="h2 pt-5" style="font-weight: bold; color: #ff5400">Produto</div>
       <div class="row bg-white rounded px-3">
         <div class="col-6 py-4">
-          <div>
+          {{-- <div>
             <span class="p-2" >Pesquisar:</span>
             <input type="text" class="rounded" id="search" name="search" placeholder="John Doe...">
-          </div>
+          </div> --}}
         </div>
         <div class="col-6 py-3 text-end">
           <button type="button" class="btn btn-success createProduct" data-toggle="modal" data-target="#ProductForm" >Produto <i class='bx bx-package nav_icon' style="font-size: 15px"></i></button>
@@ -34,7 +34,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="modalFomrUser" style="font-weight: bold; color: #0099B2">Criar Produto</h5>
+        <h5 class="modal-title" id="modalFomrUser" style="font-weight: bold; color: #ff5400">Criar Produto</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -75,16 +75,12 @@
   </div>
 </div>
 
-
-
-
-
 <!-- Modal Edit -->
 <div class="modal fade" id="product" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold; color: #0099B2">Editar Produto</h5>
+        <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold; color: #ff5400">Editar Produto</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
           <span aria-hidden="true">&times;</span>
         </button>
