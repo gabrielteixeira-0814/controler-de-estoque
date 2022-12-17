@@ -21,6 +21,7 @@
     <div class="">
         @include('layouts.navigation')
         @yield('content')
+
         @include('layouts.footer')
     </div>
 
@@ -31,5 +32,10 @@
     <script src="https://kit.fontawesome.com/d712964458.js" crossorigin="anonymous"></script>
 
     @yield('script')
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
+    </script>
 </body>
 </html>

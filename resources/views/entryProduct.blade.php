@@ -70,10 +70,6 @@
   </div>
 </div>
 
-
-
-
-
 <!-- Modal Edit -->
 <div class="modal fade" id="entryProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -128,7 +124,36 @@
   </div>
 </div>
 
+<!-- Modal add itens -->
+<div class="modal fade" id="itemEntryProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold; color: #ff5400">Adicionar Itens</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-10 mt-2">
+            <div class="alert alert-success text-center" id="successEdit" role="alert">
+              Itens adiconado com sucesso!
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-body">
+            <div class="itemAddEntryProducts_data"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary closeEdit" data-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-primary saveEdit">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 @section('script')
-    <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/entryProduct.js') }}" defer></script>
+    <script src="{{ asset('js/addItemEntryProduct.js') }}" defer></script>
 @endsection

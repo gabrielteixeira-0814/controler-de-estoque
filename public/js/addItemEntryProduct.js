@@ -1,44 +1,45 @@
- /*** Table Users ***/
+ /*** Table Products ***/
 
  $(document).ready(function(){
-    carregarTabelaUser();
+    carregarListItemEntryProduct();
     $("#successDelete").hide(); // hide message success delete
+   // $("#errorDelete").hide();
 });
 
 
-// Table user
-function carregarTabelaUser() {
+// Table Entry Product
+function carregarListItemEntryProduct() {
 
      // Gif
-     $('.users_data').html('<div class="d-flex justify-content-center mt-3 loading">Loading&#8230;</div>');
+     $('.entryProducts_data').html('<div class="d-flex justify-content-center mt-3 loading">Loading&#8230;</div>');
 
     var search = $("#search").val();
 
     $.ajax({
-    url: "/user/list",
+    url: "/item/entry/list/product",
     method: 'GET',
     data: ''
         }).done(function(data){
-
         setTimeout(function() {
+            console.log(data);
             if(data) {
-                $('.users_data').html(data);
+                $('.itemAddEntryProducts_data').html(data);
             }else {
-                $('.users_data').html('<div class="">Error</div>');
+                $('.itemAddEntryProducts_data').html('<div class="">Error</div>');
             }
         }, 1000);
     });
 }
 
-// Return Form user
-$(document).on('click', '.createUser', function(e) {
+// Return Form Entry Product
+$(document).on('click', '.createEntryProduct', function(e) {
 
     $("#successCreate").hide(); //hide message
     $(".modalFormGif").hide();
     $("#gifForm").show();
 
     $.ajax({
-        url: "user/form",
+        url: "/entry/product/form",
         method: 'GET',
         data: ''
             }).done(function(data){
@@ -51,23 +52,23 @@ $(document).on('click', '.createUser', function(e) {
 
                      $(".modalFormGif").show();
 
-                    $('.form-user').html(data);
+                    $('.form-entryProduct').html(data);
                 }else {
-                    $('.form-user').html('<div class="">Error</div>');
+                    $('.form-entryProduct').html('<div class="">Error</div>');
                 }
             }, 500);
         });
 });
 
 
-// Create user
+// Create Entry Product
 $(document).on('click', '.saveForm', function(e) {
     $(".saveForm").show();
 
-    value = $(".form_user").serialize();
+    value = $(".form_entryProduct").serialize();
 
     $.ajax({
-        url: "/user/create",
+        url: "/entry/product/create",
         method: 'POST',
         data: value,
             }).done(function(data){
@@ -77,7 +78,7 @@ $(document).on('click', '.saveForm', function(e) {
                 $("#successCreate").show();
                 $(".saveForm").hide();
 
-                carregarTabelaUser(0);
+                carregarListItemEntryProduct(0);
             }
         })
         .fail(function(error) {
@@ -101,7 +102,7 @@ $(document).on('click', '.saveForm', function(e) {
 });
 
 
-// Show user
+// Show Entry Product
 $(document).on('click', '.edit', function(e) {
 
     $("#successEdit").hide(); //hide message
@@ -111,12 +112,10 @@ $(document).on('click', '.edit', function(e) {
     var id = $(this).val();
 
     $.ajax({
-        url: "user/"+ id + "",
+        url: "/entry/product/"+ id + "",
         method: 'GET',
         data: ""
             }).done(function(data){
-            //console.log(data[0]);
-
             setTimeout(function() {
                 if(data) {
 
@@ -125,9 +124,13 @@ $(document).on('click', '.edit', function(e) {
 
                     $(".modalGif").show();
 
-                    $('.id').val(data[0].id)
-                    $('.name').val(data[0].name)
-                    $('.office').val(data[0].office)
+                    date = new Date(data[0].entryDate);
+                    date = (date.getDate()+1)+"/"+(date.getMonth()+1)+"/"+date.getFullYear();
+
+                    $('.id').val(data[0].id);
+                    $('.entryDate').val(date);
+                    $('.total').val(data[0].total);
+
                 }else {
                     console.log('Error');
                 }
@@ -136,23 +139,22 @@ $(document).on('click', '.edit', function(e) {
 });
 
 
-// Edit user
+// Edit Entry Product
 $(document).on('click', '.saveEdit', function(e) {
     $(".saveEdit").show();
 
-    value = $(".form_user_edit").serialize();
+    value = $(".form_product_edit").serialize();
 
     $.ajax({
-        url: "/user/update",
+        url: "/entry/product/update",
         method: 'POST',
         data: value,
             }).done(function(data){
-
             if(data) {
                 $("#successEdit").show();
                 $(".saveEdit").hide();
 
-                carregarTabelaUser(0);
+                carregarListItemEntryProduct(0);
             }
         }).fail(function(error) {
 
@@ -178,19 +180,18 @@ $(document).on('click', '.closeEdit', function(e) {
 });
 
 
-// Delete user
+// Delete Entry Product
 $(document).on('click', '.delete', function(e) {
 
     var id = $(this).val();
     $.ajax({
-        url: "user/delete/"+ id + "",
+        url: "/entry/product/delete/"+ id + "",
         method: 'DELETE',
         data: ""
             }).done(function(data){
-                console.log(data);
-                if(data) {
+                if(data != 'Error') {
                     $("#successDelete").show();
-                    carregarTabelaUser(0);
+                    carregarListItemEntryProduct(0);
 
                     setTimeout(function() {
                         $("#successDelete").hide();
@@ -198,6 +199,7 @@ $(document).on('click', '.delete', function(e) {
 
                 }else {
                     console.log('Error');
+                    $("#errorDelete").show();
                 }
         });
 });

@@ -5,14 +5,17 @@ namespace App\Http\Controllers\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\ItemEntryProductService;
+use App\Services\ProductService;
 
 class ItemEntryProductController extends Controller
 {
     private $service;
+    private $serviceProductServer;
 
-    public function __construct(ItemEntryProductService $service)
+    public function __construct(ItemEntryProductService $service, ProductService $serviceProductServer)
     {
         $this->service = $service;
+        $this->serviceProductServer = $serviceProductServer;
     }
 
     public function getList()
@@ -38,5 +41,11 @@ class ItemEntryProductController extends Controller
     public function delete($id)
     {
         return $this->service->destroy($id);
+    }
+    public function getListProduct()
+    {
+        $request['search'] = null;
+        $products = $this->serviceProductServer->getList($request);
+        return view('form.itemEntryProductFormModal', compact('products'))->render();
     }
 }

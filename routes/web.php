@@ -66,6 +66,7 @@ Route::prefix('item')->group(function() {
     Route::post('entry/product/create', [ItemEntryProductController::class, 'store']);
     Route::post('entry/product/update/{id}', [ItemEntryProductController::class, 'update']);
     Route::delete('entry/product/delete/{id}', [ItemEntryProductController::class, 'delete']);
+    Route::get('entry/list/product', [ItemEntryProductController::class, 'getListProduct']);
 });
 
 // OutPut Product
