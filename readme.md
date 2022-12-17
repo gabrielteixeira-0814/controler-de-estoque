@@ -4,7 +4,7 @@
 </h1>
 
 <h1>
-  <img src="public/img/create-moday.gif" />
+  <img src="public/img/controle-estoque.gif" />
 </h1>
 
 ## 🚨 About
