@@ -45,7 +45,7 @@ class ItemEntryProductController extends Controller
     public function getListProduct()
     {
         $request['search'] = null;
-        $products = $this->serviceProductServer->getList($request);
-        return view('form.itemEntryProductFormModal', compact('products'))->render();
+
+        return $this->serviceProductServer->getList($request);
     }
 }

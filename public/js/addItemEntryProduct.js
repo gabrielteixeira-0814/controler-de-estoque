@@ -1,64 +1,35 @@
  /*** Table Products ***/
 
  $(document).ready(function(){
-    carregarListItemEntryProduct();
+    //carregarListItemEntryProduct();
     $("#successDelete").hide(); // hide message success delete
    // $("#errorDelete").hide();
 });
 
 
-// Table Entry Product
-function carregarListItemEntryProduct() {
-
-     // Gif
-     $('.entryProducts_data').html('<div class="d-flex justify-content-center mt-3 loading">Loading&#8230;</div>');
-
-    var search = $("#search").val();
-
-    $.ajax({
-    url: "/item/entry/list/product",
-    method: 'GET',
-    data: ''
-        }).done(function(data){
-        setTimeout(function() {
-            console.log(data);
-            if(data) {
-                $('.itemAddEntryProducts_data').html(data);
-            }else {
-                $('.itemAddEntryProducts_data').html('<div class="">Error</div>');
-            }
-        }, 1000);
-    });
-}
-
-// Return Form Entry Product
-$(document).on('click', '.createEntryProduct', function(e) {
-
-    $("#successCreate").hide(); //hide message
-    $(".modalFormGif").hide();
-    $("#gifForm").show();
+// Create form de itens de products
+var x = 1;
+$(document).on('click', '.add-item-product', function(e) {
+    e.preventDefault();
+    x++
+    $('#form-add-item-product').append("<div class='row mt-3 form-group-itens-product-"+x+"'><div class='col-md-8'><select id='form-select-"+x+"' class='form-select' aria-label=''></select></div><div class='col-3 type-number'><input step='1' value='1' type='number' class='form-control' /></div><div class='col-1 d-flex align-items-center'><i style='color: #e93535; font-size: 16px;cursor: pointer;' class='bx bxs-trash remove_field'></i></div></div></div>");
 
     $.ajax({
-        url: "/entry/product/form",
+        url: "/item/entry/list/product",
         method: 'GET',
-        data: ''
             }).done(function(data){
-
-            setTimeout(function() {
-                if(data) {
-
-                     // Gif
-                     $("#gifForm").hide();
-
-                     $(".modalFormGif").show();
-
-                    $('.form-entryProduct').html(data);
-                }else {
-                    $('.form-entryProduct').html('<div class="">Error</div>');
-                }
-            }, 500);
+            $.each(data, function( k, v ) {
+                $("#form-select-"+x+"").append("<option value='"+ v.id +"'>"+ v.name +"</option>");
+            });
         });
 });
+
+//user click on remove text
+$(document).on("click", ".remove_field", function(e) {
+    e.preventDefault();
+    $(".form-group-itens-product-"+x+"").remove();
+    x--;
+  });
 
 
 // Create Entry Product
