@@ -34,36 +34,36 @@ $(document).on("click", ".remove_field", function(e) {
 
 // Create Entry Product
 $(document).on('click', '.saveForm', function(e) {
-    $(".saveForm").show();
+   // $(".saveForm").show();
 
-    value = $(".form_entryProduct").serialize();
+    value = $(".form_add_itens_product").serialize();
 
-    $.ajax({
-        url: "/entry/product/create",
-        method: 'POST',
-        data: value,
-            }).done(function(data){
-            console.log(data);
+    // $.ajax({
+    //     url: "/entry/product/create",
+    //     method: 'POST',
+    //     data: value,
+    //         }).done(function(data){
+    //         console.log(data);
 
-            if(data) {
-                $("#successCreate").show();
-                $(".saveForm").hide();
+    //         if(data) {
+    //             $("#successCreate").show();
+    //             $(".saveForm").hide();
 
-                carregarListItemEntryProduct(0);
-            }
-        })
-        .fail(function(error) {
+    //             carregarListItemEntryProduct(0);
+    //         }
+    //     })
+    //     .fail(function(error) {
 
-            $.each(error.responseJSON.errors, function( k, v ) {
-                $('.msgError').append("<div class='alert alert-danger errorMsg' role='alert'>" + v + "</div>");
-              });
+    //         $.each(error.responseJSON.errors, function( k, v ) {
+    //             $('.msgError').append("<div class='alert alert-danger errorMsg' role='alert'>" + v + "</div>");
+    //           });
 
-              $( ".errorMsg" ).fadeIn(300).delay(3000).fadeOut(300);
+    //           $( ".errorMsg" ).fadeIn(300).delay(3000).fadeOut(300);
 
-              setTimeout(function() {
-                $( ".errorMsg" ).remove();
-            }, 4000);
-          });
+    //           setTimeout(function() {
+    //             $( ".errorMsg" ).remove();
+    //         }, 4000);
+    //       });
 });
 
 

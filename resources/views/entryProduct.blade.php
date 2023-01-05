@@ -144,15 +144,16 @@
 
         <div class="modal-body">
             <div class="itemAddEntryProducts_data">
-                <form action="" class="form_entryProduct" id="form_itemEntryProduct">
+                <form action="" class="form_add_itens_product" id="form_add_itens_product">
                     <button type="button" id="add-item-product" class="btn btn-success add-item-product"><i class='bx bx-plus nav_icon' style="font-size: 15px"></i> Adicionar Itens</button>
                     <div id="form-add-item-product" class="form-add-item-product"></div>
                 </form>
             </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary closeEdit" data-dismiss="modal">Fechar</button>
-          <button type="button" class="btn btn-primary saveEdit">Salvar</button>
+          <button type="button" class="btn btn-secondary close-itens-add-product" data-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-primary save-itens-add-product" onclick="event.preventDefault();
+          document.getElementById('form_add_itens_product').submit();">Salvar</button>
         </div>
       </div>
     </div>
