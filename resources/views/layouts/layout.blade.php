@@ -1,9 +1,9 @@
 <html lang='pt-br'>
+<meta name="csrf-token" content="{{ csrf_token() }}" />
 <head>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title> @yield('title')</title>
-    <link href="{{ asset('/images/brand/favicon.png') }}" rel="icon" type="image/png"/>
+    <link href="<!-- {{ asset('/images/brand/favicon.png') }} -->" rel="icon" type="image/png"/>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
 
     <!-- Scripts -->

@@ -39,7 +39,7 @@ $(document).on('click', '.createProduct', function(e) {
     $("#gifForm").show();
 
     $.ajax({
-        url: "user/form",
+        url: "product/form",
         method: 'GET',
         data: ''
             }).done(function(data){
@@ -61,19 +61,19 @@ $(document).on('click', '.createProduct', function(e) {
 });
 
 
-// Create user
+// Create Product
 $(document).on('click', '.saveForm', function(e) {
     $(".saveForm").show();
-
     value = $(".form_product").serialize();
 
     $.ajax({
         url: "/product/create",
         method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         data: value,
             }).done(function(data){
-            console.log(data);
-
             if(data) {
                 $("#successCreate").show();
                 $(".saveForm").hide();
@@ -92,15 +92,13 @@ $(document).on('click', '.saveForm', function(e) {
               setTimeout(function() {
                 $( ".errorMsg" ).remove();
             }, 4000);
-          });
+        });
 });
-
 
  // close modal create
  $(document).on('click', '.closeCreate', function(e) {
     $(".saveForm").show();
 });
-
 
 // Show product
 $(document).on('click', '.edit', function(e) {
@@ -114,12 +112,14 @@ $(document).on('click', '.edit', function(e) {
     $.ajax({
         url: "product/"+ id + "",
         method: 'GET',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         data: ""
             }).done(function(data){
 
             setTimeout(function() {
                 if(data) {
-
                     // Gif
                     $("#gif").hide();
 
@@ -148,38 +148,33 @@ $(document).on('click', '.saveEdit', function(e) {
     $.ajax({
         url: "/product/update",
         method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         data: value,
             }).done(function(data){
-                console.log(data);
             if(data) {
                 $("#successEdit").show();
                 $(".saveEdit").hide();
-
                 carregarTabelaProduct(0);
             }
         }).fail(function(error) {
 
-            // Message errors
-            console.log("error");
-            console.log(error.responseJSON.errors);
-
             $.each(error.responseJSON.errors, function( k, v ) {
                 $('.msgErrorEdit').append("<div class='alert alert-danger errorMsgEdit' role='alert'>" + v + "</div>");
               });
-
               $( ".errorMsgEdit" ).fadeIn(300).delay(3000).fadeOut(300);
 
               setTimeout(function() {
                 $( ".errorMsgEdit" ).remove();
             }, 4000);
-          });
+        });
 });
 
 // close modal edit
 $(document).on('click', '.closeEdit', function(e) {
     $(".saveEdit").show();
 });
-
 
 // Delete product
 $(document).on('click', '.delete', function(e) {
@@ -188,6 +183,9 @@ $(document).on('click', '.delete', function(e) {
     $.ajax({
         url: "product/delete/"+ id + "",
         method: 'DELETE',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         data: ""
             }).done(function(data){
                 if(data != 'Error') {

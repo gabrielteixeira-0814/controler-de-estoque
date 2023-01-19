@@ -17,6 +17,9 @@ function carregarTabelaUser() {
     $.ajax({
     url: "/user/list",
     method: 'GET',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
     data: ''
         }).done(function(data){
 
@@ -40,6 +43,9 @@ $(document).on('click', '.createUser', function(e) {
     $.ajax({
         url: "user/form",
         method: 'GET',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         data: ''
             }).done(function(data){
 
@@ -66,7 +72,10 @@ $(document).on('click', '.saveForm', function(e) {
 
     value = $(".form_user").serialize();
 
-    $.ajax({
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         url: "/user/create",
         method: 'POST',
         data: value,
@@ -113,6 +122,9 @@ $(document).on('click', '.edit', function(e) {
     $.ajax({
         url: "user/"+ id + "",
         method: 'GET',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         data: ""
             }).done(function(data){
             //console.log(data[0]);
@@ -145,6 +157,9 @@ $(document).on('click', '.saveEdit', function(e) {
     $.ajax({
         url: "/user/update",
         method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         data: value,
             }).done(function(data){
 
@@ -185,6 +200,9 @@ $(document).on('click', '.delete', function(e) {
     $.ajax({
         url: "user/delete/"+ id + "",
         method: 'DELETE',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         data: ""
             }).done(function(data){
                 console.log(data);

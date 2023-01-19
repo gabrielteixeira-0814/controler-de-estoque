@@ -1,5 +1,5 @@
 
-{{-- Form User --}}
+{{-- Form Product --}}
 <div class="form-product">
     <form action="" class="form_product" id="form_product">
         <div class="mb-3">
@@ -22,4 +22,5 @@
           </select>
         </div>
     </form>
+    {{ $teste }}
 </div>

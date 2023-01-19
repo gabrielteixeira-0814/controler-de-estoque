@@ -72,8 +72,8 @@ class ProductRepositoryEloquent implements ProductRepositoryInterface
             return 'Registro deletado com sucesso';
 
         } catch (\Exception $e) {
-
             return 'Error';
+
         }
     }
 }
