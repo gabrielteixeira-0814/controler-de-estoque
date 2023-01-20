@@ -201,22 +201,19 @@ $(document).on('click', '.delete', function(e) {
         });
 });
 
-// Create form to add itens
 
- totalItens = 0;
-
- // Adicionar itens
- $(document).on('click', '.addItens', function(e) {
+ var x = 1;
+$(document).on('click', '.addItens', function(e) {
      e.preventDefault();
-     $(".formItens").append("<div class='my-2 itens totalItens' ><input id='' class='form-control'><span><button class='deleteItens'>x</button></span></div>");
-
-     totalItens++
+     x++;
+     $(".formItens").append("<div class='my-2' id='teste'><input id='teste2' class='form-control'><a href='#' class='remove_field' id=''>Remove</a></div>"); //add input box
  });
 
- // remove itens
- $(document).on('click', '.deleteItens', function(e) {
+ $(document).on("click", ".remove_field", function(e) { //user click on remove text
      e.preventDefault();
-     $(".formItens").remove();
+     $(this).parent('div').remove();
+ })
 
-     totalItens--
- });
+
+
+
