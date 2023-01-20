@@ -22,5 +22,4 @@
           </select>
         </div>
     </form>
-    {{ $teste }}
 </div>

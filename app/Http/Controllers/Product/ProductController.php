@@ -32,15 +32,6 @@ class ProductController extends Controller
         return view('list.listProduct', compact('listProduct', 'search'))->render();
     }
 
-    public function getSelectList()
-    {
-        //$request['search'] = false;
-        //$listProduct = $this->service->getList($request);
-        $testeaa = "oal";
-
-        return view('form.productFormModal', compact("testeaa"));
-    }
-
     public function get($id)
     {
         return $this->service->get($id);

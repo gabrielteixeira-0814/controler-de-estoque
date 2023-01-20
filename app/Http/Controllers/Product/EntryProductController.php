@@ -5,14 +5,17 @@ namespace App\Http\Controllers\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\EntryProductService;
+use App\Services\ProductService;
 
 class EntryProductController extends Controller
 {
     private $service;
+    private $serviceProduct;
 
-    public function __construct(EntryProductService $service)
+    public function __construct(EntryProductService $service, ProductService $serviceProduct)
     {
         $this->service = $service;
+        $this->serviceProduct = $serviceProduct;
     }
 
     public function index()
@@ -22,7 +25,9 @@ class EntryProductController extends Controller
 
     public function formEntryProduct()
     {
-        return view('form.entryProductFormModal')->render();
+        $request['search'] = false;
+        $listProduct = $this->serviceProduct->getList($request);
+        return view('form.entryProductFormModal', compact('listProduct'))->render();
     }
 
     public function getList(Request $request)

@@ -42,7 +42,7 @@ Route::prefix('product')->group(function() {
     Route::get('/', [ProductController::class, 'index'])->name('pageProduct');
     Route::get('/form', [ProductController::class, 'formProduct'])->name('formProduct');
     Route::get('/list', [ProductController::class, 'getList']);
-    Route::get('/list/teste', [ProductController::class, 'getSelectList']);
+    Route::get('/list/selectProduct', [ProductController::class, 'getSelectList']);
     Route::get('/{id}', [ProductController::class, 'get']);
     Route::post('/create', [ProductController::class, 'store']);
     Route::post('/update', [ProductController::class, 'update']);

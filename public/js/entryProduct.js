@@ -95,11 +95,10 @@ $(document).on('click', '.saveForm', function(e) {
 });
 
 
- // close modal create
+// close modal create
  $(document).on('click', '.closeCreate', function(e) {
     $(".saveForm").show();
 });
-
 
 // Show Entry Product
 $(document).on('click', '.edit', function(e) {
@@ -136,7 +135,6 @@ $(document).on('click', '.edit', function(e) {
             }, 1000);
         });
 });
-
 
 // Edit Entry Product
 $(document).on('click', '.saveEdit', function(e) {
@@ -202,3 +200,23 @@ $(document).on('click', '.delete', function(e) {
                 }
         });
 });
+
+// Create form to add itens
+
+ totalItens = 0;
+
+ // Adicionar itens
+ $(document).on('click', '.addItens', function(e) {
+     e.preventDefault();
+     $(".formItens").append("<div class='my-2 itens totalItens' ><input id='' class='form-control'><span><button class='deleteItens'>x</button></span></div>");
+
+     totalItens++
+ });
+
+ // remove itens
+ $(document).on('click', '.deleteItens', function(e) {
+     e.preventDefault();
+     $(".formItens").remove();
+
+     totalItens--
+ });

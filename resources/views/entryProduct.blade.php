@@ -12,6 +12,7 @@
             </div>
         </div>
         <div class="h2 pt-5" style="font-weight: bold; color: #ff5400">Entrada de Produto</div>
+
         <div class="row bg-white rounded px-3">
             <div class="col-6 py-4">
                 {{-- <div>
