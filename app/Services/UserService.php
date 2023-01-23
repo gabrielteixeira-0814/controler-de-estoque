@@ -40,13 +40,20 @@ class UserService
 
     public function getList($request)
     {
+        $pag_limit = $request['pag_limit'];
+        $pag = $request['pag'];
+
         if($request['search']){
             $users = $this->repo->getListSearch($request['search']);
             return $users;
 
         }else {
-            $users = $this->repo->getList();
-            return $users;
+
+            if($pag > 0) {
+                $conf = ['limit' =>  $pag_limit, 'pag' => $pag];
+                $users = $this->repo->getList($conf);
+                return $users;
+            }
         }
     }
 

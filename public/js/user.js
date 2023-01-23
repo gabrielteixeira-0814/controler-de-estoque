@@ -5,14 +5,41 @@
     $("#successDelete").hide(); // hide message success delete
 });
 
+ var pag = 1;
+
+ // Pagination
+ // next
+ $(document).on('click', '#proximo', function(e) {
+     e.preventDefault();
+     //var pagina = pag++;
+     pag++;
+
+     carregarTabelaUser(pag);
+ });
+
+ $(document).on('click', '#anterior', function(e) {
+     e.preventDefault();
+
+     if(pag > 0){
+         pag--;
+     }else {
+         pag = 0;
+     }
+
+     carregarTabelaUser(pag);
+ });
 
 // Table user
-function carregarTabelaUser() {
+function carregarTabelaUser(pag) {
 
      // Gif
      $('.users_data').html('<div class="d-flex justify-content-center mt-3 loading">Loading&#8230;</div>');
 
     var search = $("#search").val();
+
+    if(!pag){
+        pag = 1;
+    }
 
     $.ajax({
     url: "/user/list",
@@ -20,7 +47,7 @@ function carregarTabelaUser() {
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-    data: ''
+    data: { pag: pag, pag_limit: 5 }
         }).done(function(data){
 
         setTimeout(function() {
@@ -72,7 +99,7 @@ $(document).on('click', '.saveForm', function(e) {
 
     value = $(".form_user").serialize();
 
-    $.ajaxSetup({
+    $.ajax({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
@@ -86,7 +113,7 @@ $(document).on('click', '.saveForm', function(e) {
                 $("#successCreate").show();
                 $(".saveForm").hide();
 
-                carregarTabelaUser(0);
+                carregarTabelaUser(1);
             }
         })
         .fail(function(error) {

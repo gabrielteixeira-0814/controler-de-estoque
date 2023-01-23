@@ -30,6 +30,8 @@ class UserController extends Controller
     {
         $search = !$request['search'] ? true : false;
         $listUser = $this->service->getList($request);
+
+
         return view('list.listUser', compact('listUser', 'search'))->render();
     }
 

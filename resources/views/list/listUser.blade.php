@@ -27,3 +27,8 @@
     @endforeach
     </tr>
 </table>
+<div>
+    <button id="anterior">&lsaquo; Anterior</button>
+    <span id="numeracao"></span>
+    <button id="proximo">Próximo &rsaquo;</button>
+</div>

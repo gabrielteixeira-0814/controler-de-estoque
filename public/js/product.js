@@ -18,6 +18,9 @@ function carregarTabelaProduct() {
     $.ajax({
     url: "/product/list",
     method: 'GET',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
     data: ''
         }).done(function(data){
 
@@ -41,6 +44,9 @@ $(document).on('click', '.createProduct', function(e) {
     $.ajax({
         url: "product/form",
         method: 'GET',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         data: ''
             }).done(function(data){
 

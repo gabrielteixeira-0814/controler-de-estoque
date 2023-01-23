@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 Use DB;
+use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 
 class UserRepositoryEloquent implements UserRepositoryInterface
 {
@@ -25,10 +26,26 @@ class UserRepositoryEloquent implements UserRepositoryInterface
         }
     }
 
-    public function getList()
+    public function getList($conf)
     {
+        $page = $conf['pag'];
+        $perPage = $conf['limit'];
+        $offset = ($page * $perPage) - $perPage;
+
         try {
-            return DB::select('select * from '.$this->table);
+            $data = DB::select('select * from '.$this->table);
+            $collect = collect($data);
+
+            $paginationData = new Paginator(
+                $collect->forPage($page, $perPage),
+                $collect->count(),
+                $perPage,
+                $page
+            );
+
+            return $paginationData;
+
+           // return new Paginator(array_slice($users, $offset, $perPage, true), count($users), $perPage, $page);
 
         } catch (\Exception $e) {
 

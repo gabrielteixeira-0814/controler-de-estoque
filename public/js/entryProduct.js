@@ -40,6 +40,9 @@ $(document).on('click', '.createEntryProduct', function(e) {
     $.ajax({
         url: "/entry/product/form",
         method: 'GET',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         data: ''
             }).done(function(data){
 
@@ -69,6 +72,9 @@ $(document).on('click', '.saveForm', function(e) {
     $.ajax({
         url: "/entry/product/create",
         method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         data: value,
             }).done(function(data){
             console.log(data);
@@ -112,6 +118,9 @@ $(document).on('click', '.edit', function(e) {
     $.ajax({
         url: "/entry/product/"+ id + "",
         method: 'GET',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         data: ""
             }).done(function(data){
             setTimeout(function() {
@@ -145,6 +154,9 @@ $(document).on('click', '.saveEdit', function(e) {
     $.ajax({
         url: "/entry/product/update",
         method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         data: value,
             }).done(function(data){
             if(data) {
@@ -154,11 +166,7 @@ $(document).on('click', '.saveEdit', function(e) {
                 carregarTabelaEntryProduct(0);
             }
         }).fail(function(error) {
-
             // Message errors
-            console.log("error");
-            console.log(error.responseJSON.errors);
-
             $.each(error.responseJSON.errors, function( k, v ) {
                 $('.msgErrorEdit').append("<div class='alert alert-danger errorMsgEdit' role='alert'>" + v + "</div>");
               });
@@ -184,6 +192,9 @@ $(document).on('click', '.delete', function(e) {
     $.ajax({
         url: "/entry/product/delete/"+ id + "",
         method: 'DELETE',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         data: ""
             }).done(function(data){
                 if(data != 'Error') {
@@ -200,7 +211,6 @@ $(document).on('click', '.delete', function(e) {
                 }
         });
 });
-
 
  var x = 1;
 $(document).on('click', '.addItens', function(e) {

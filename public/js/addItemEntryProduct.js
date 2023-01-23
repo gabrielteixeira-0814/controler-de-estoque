@@ -1,9 +1,7 @@
  /*** Table Products ***/
 
  $(document).ready(function(){
-    //carregarListItemEntryProduct();
     $("#successDelete").hide(); // hide message success delete
-   // $("#errorDelete").hide();
 });
 
 
@@ -85,6 +83,9 @@ $(document).on('click', '.edit', function(e) {
     $.ajax({
         url: "/entry/product/"+ id + "",
         method: 'GET',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         data: ""
             }).done(function(data){
             setTimeout(function() {
@@ -119,6 +120,9 @@ $(document).on('click', '.saveEdit', function(e) {
     $.ajax({
         url: "/entry/product/update",
         method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         data: value,
             }).done(function(data){
             if(data) {
@@ -158,6 +162,9 @@ $(document).on('click', '.delete', function(e) {
     $.ajax({
         url: "/entry/product/delete/"+ id + "",
         method: 'DELETE',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         data: ""
             }).done(function(data){
                 if(data != 'Error') {
