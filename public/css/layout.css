@@ -25,3 +25,17 @@ body {
     overflow: hidden;
     outline: none;
 }
+
+.header {
+    background-color: #d9d9d9 !important;
+    border: 1px solid #000000;
+}
+
+.valueTable {
+    font-weight: bold;
+}
+
+.line {
+    text-align: right;
+    font-size: 13px;
+}

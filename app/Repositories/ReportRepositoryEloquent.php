@@ -19,7 +19,6 @@ class ReportRepositoryEloquent implements ReportRepositoryInterface
         $date[] = $data['dateFin'];
 
         try {
-
             return DB::select("SELECT name,
                                 ROUND(SUM(quantity),2) AS quantidade,
                                     IF(SUM(quantity * costPrice) IS NULL,ROUND((SELECT SUM(quantity * costPrice) as custoTotal from tb_item_composite_product AS icp LEFT JOIN tb_product AS p ON (icp.product_id = p.id) where icp.composite_product_id = 2),2), ROUND(SUM(quantity * costPrice),2)) AS precoCustoTotal,
@@ -39,8 +38,20 @@ class ReportRepositoryEloquent implements ReportRepositoryInterface
 
     public function outputReport($data)
     {
+        $date[] = $data['dateIni'];
+        $date[] = $data['dateFin'];
+
         try {
-            return DB::select('select * from '.$this->table.' where id = ?',[$id]);
+            return DB::select("select name,
+                                SUM(quantity) AS quantidade,
+                                ROUND(SUM(quantity * costPrice), 2) AS precoCustoTotal,
+                                ROUND(SUM(quantity * salePrice),2) AS precoVendaTotal
+                                    from tb_output_product AS ep
+                                        LEFT JOIN tb_item_output_product AS iop ON (ep.id = iop.output_product_id)
+                                        LEFT JOIN tb_product AS p ON (iop.product_id = p.id)
+                                            WHERE ep.outputDate between '".$date[0]."' and '".$date[1]."'  AND name IS NOT NULL
+                                                GROUP BY name
+                                                    ORDER BY ep.id ASC");
 
         } catch (\Exception $e) {
 

@@ -22,13 +22,43 @@ class ReportService
         $request['dateFin'] = DateTime::createFromFormat('d/m/Y H:i:s', $request['dateFin'].' 00:00:00');
         $request['dateFin'] = $request['dateFin']->format('Y-m-d');
 
-        return $this->repo->entryReport($request);
+        $data = $this->repo->entryReport($request);
+
+        $totalQuant = 0;
+        $totalPrecoCusto = 0;
+        $totalPrecoVenda = 0;
+
+        foreach ($data as $item) {
+            $totalQuant = $totalQuant + $item->quantidade;
+            $totalPrecoCusto = $totalPrecoCusto + $item->precoCustoTotal;
+            $totalPrecoVenda = $totalPrecoVenda + $item->precoVendaTotal;
+        }
+
+        return $listValue = ['data' => $data, 'totalQuant' => $totalQuant, 'totalPrecoCusto' => $totalPrecoCusto, 'totalPrecoVenda' => $totalPrecoVenda];
     }
 
     public function outputReport($request)
     {
-        return $this->repo->outputReport($request);
+
+        $request['dateIni'] = DateTime::createFromFormat('d/m/Y H:i:s', $request['dateIni'].' 00:00:00');
+        $request['dateIni'] = $request['dateIni']->format('Y-m-d');
+
+        $request['dateFin'] = DateTime::createFromFormat('d/m/Y H:i:s', $request['dateFin'].' 00:00:00');
+        $request['dateFin'] = $request['dateFin']->format('Y-m-d');
+
+        $data = $this->repo->outputReport($request);
+
+        $totalQuant = 0;
+        $totalPrecoCusto = 0;
+        $totalPrecoVenda = 0;
+
+        foreach ($data as $item) {
+            $totalQuant = $totalQuant + $item->quantidade;
+            $totalPrecoCusto = $totalPrecoCusto + $item->precoCustoTotal;
+            $totalPrecoVenda = $totalPrecoVenda + $item->precoVendaTotal;
+        }
+
+        return $listValue = ['data' => $data, 'totalQuant' => $totalQuant, 'totalPrecoCusto' => $totalPrecoCusto, 'totalPrecoVenda' => $totalPrecoVenda];
     }
 }
-
 ?>

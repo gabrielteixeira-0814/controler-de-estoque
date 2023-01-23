@@ -17,17 +17,27 @@ class ReportController extends Controller
 
     public function entryReport(Request $request)
     {
-        $listEntryReport = $this->service->entryReport($request);
-//        $request['dateIni'] = DateTime::createFromFormat('d/m/Y H:i:s', $request['dateIni'].' 00:00:00');
-//        $request['dateIni'] = $request['dateIni']->format('Y-m-d');
+
+        $data = $this->service->entryReport($request);
+        $listEntryReport = $data['data'];
+        $totalQuant = $data['totalQuant'];
+        $totalPrecoCusto = $data['totalPrecoCusto'];
+        $totalPrecoVenda = $data['totalPrecoVenda'];
         $dateIni = $request['dateIni'];
         $dateFin = $request['dateFin'];
-        return view('entryReport', compact('listEntryReport', 'dateIni', 'dateFin'));
+        return view('entryReport', compact('listEntryReport', 'dateIni', 'dateFin', 'totalQuant', 'totalPrecoCusto', 'totalPrecoVenda'));
     }
 
-    public function outputReport($id)
+    public function outputReport(Request $request)
     {
-        return $this->service->outputReport($id);
-    }
+        $data = $this->service->outputReport($request);
+        $listOutPutReport = $data['data'];
+        $totalQuant = $data['totalQuant'];
+        $totalPrecoCusto = $data['totalPrecoCusto'];
+        $totalPrecoVenda = $data['totalPrecoVenda'];
+        $dateIni = $request['dateIni'];
+        $dateFin = $request['dateFin'];
 
+        return view('outputReport', compact('listOutPutReport', 'dateIni', 'dateFin', 'totalQuant', 'totalPrecoCusto', 'totalPrecoVenda'));
+    }
 }

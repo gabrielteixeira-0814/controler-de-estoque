@@ -6,7 +6,7 @@
         <div class="text-right mb-2" style="text-align: right !important; font-weight: bold;">Data Inicial: {{ date("d/m/Y", strtotime($dateIni)) }}</div>
         <div class="text-right" style="text-align: right !important; font-weight: bold;"><span class="" style="padding-right: 7px;">Data Final: {{ date("d/m/Y", strtotime($dateFin)) }}</span></div>
     </div>
-    <div class="text-center my-3"><h3>Relatório de Entrada de Produto</h3></div>
+    <div class="text-center my-3"><h3>Relatório de Saída de Produto</h3></div>
     <div class="row justify-content-center">
         <div class="container mt-5">
             <div class="row justify-content-center">
@@ -29,19 +29,19 @@
                             </tr>
                         </thead>
 
-                        @foreach ($listEntryReport as $entryReport)
+                        @foreach ($listOutPutReport as $outputReport)
                             <tr>
                                 <td class="text-center">
-                                    {{ $entryReport->name }}
+                                    {{ $outputReport->name }}
                                 </td>
                                 <td class="valueTable line">
-                                    {{ number_format($entryReport->quantidade, 2, ',', '.') }}
+                                    {{ number_format($outputReport->quantidade, 2, ',', '.') }}
                                 </td>
                                 <td class="valueTable line">
-                                    {{ $entryReport->precoCustoTotal ? number_format($entryReport->precoCustoTotal, 2, ',', '.') : "-" }}
+                                    {{ $outputReport->precoCustoTotal ? number_format($outputReport->precoCustoTotal, 2, ',', '.') : "-" }}
                                 </td>
                                 <td class="valueTable line">
-                                    {{ $entryReport->precoVendaTotal ? number_format($entryReport->precoVendaTotal, 2, ',', '.') : "-" }}
+                                    {{ $outputReport->precoVendaTotal ? number_format($outputReport->precoVendaTotal, 2, ',', '.') : "-" }}
                                 </td>
                             </tr>
                             @endforeach
