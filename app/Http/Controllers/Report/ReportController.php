@@ -40,4 +40,23 @@ class ReportController extends Controller
 
         return view('outputReport', compact('listOutPutReport', 'dateIni', 'dateFin', 'totalQuant', 'totalPrecoCusto', 'totalPrecoVenda'));
     }
+
+    public function reportProductRequisition(Request $request)
+    {
+        $data = $this->service->requisitionProductReport($request);
+
+        // Coloca o número das requisicoes em uma lista
+        $listIdRequisitionGroup = [];
+        foreach ($data as $item) {
+            if(!in_array($item->número, $listIdRequisitionGroup)){
+                $listIdRequisitionGroup[] = $item->número;
+            }
+        }
+
+        $listRequisitionProduct = $data;
+        $dateIni = $request['dateIni'];
+        $dateFin = $request['dateFin'];
+
+        return view('requisitionProductReport', compact('listRequisitionProduct','listIdRequisitionGroup', 'dateIni', 'dateFin'));
+    }
 }

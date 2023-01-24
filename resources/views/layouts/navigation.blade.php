@@ -15,8 +15,9 @@
                             Relatórios Gerenciais
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="">
-                                <li><a class="dropdown-item" href="#" data-toggle="modal" data-target="#entryReport" >Relatório de Entrada</a></li>
-                                <li><a class="dropdown-item" href="#" data-toggle="modal" data-target="#outputReport">Relatório de Saída</a></li>
+                                <li><a class="dropdown-item" href="#" data-toggle="modal" data-target="#entryReport" >Entrada</a></li>
+                                <li><a class="dropdown-item" href="#" data-toggle="modal" data-target="#outputReport">Saída</a></li>
+                                <li><a class="dropdown-item" href="#" data-toggle="modal" data-target="#requisitionProductReport">Requisição de Produto</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -46,7 +47,7 @@
                     <div class="mb-3">
                         <label for="dateFin" class="form-label">Data Final</label>
                         <input type="text" class="form-control" id="dateFin" name="dateFin" aria-describedby="dateFin" placeholder="31/01/2022">
-                      </div>
+                    </div>
                 </form>
             </div>
         </div>
@@ -88,6 +89,40 @@
                 <button type="button" class="btn btn-secondary closeCreate" data-dismiss="modal">Fechar</button>
                 <button type="button" class="btn btn-primary saveForm" onclick="event.preventDefault();
           document.getElementById('logoutOutPut-form').submit();">Executar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Relatório de requisição de produto -->
+<div class="modal fade" id="requisitionProductReport" tabindex="-1" role="dialog" aria-labelledby="modalFormRequisitionReport" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalFormRequisitionReport" style="font-weight: bold; color: #ff5400">Relatório de saída</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body modalFormGif">
+                <div class="form-requisitionProduct">
+                    <form method="POST" action="{{ route('reportRequisition') }} " id="logoutRequisitionProduct-form" class="form_outPutProduct" id="form_outPutProduct">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="dateIni" class="form-label">Data Inicial</label>
+                            <input type="text" class="form-control" id="dateIni" name="dateIni" aria-describedby="dateIni" placeholder="01/01/2022">
+                        </div>
+                        <div class="mb-3">
+                            <label for="dateFin" class="form-label">Data Final</label>
+                            <input type="text" class="form-control" id="dateFin" name="dateFin" aria-describedby="dateFin" placeholder="31/01/2022">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary closeCreate" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary saveForm" onclick="event.preventDefault();
+          document.getElementById('logoutRequisitionProduct-form').submit();">Executar</button>
             </div>
         </div>
     </div>

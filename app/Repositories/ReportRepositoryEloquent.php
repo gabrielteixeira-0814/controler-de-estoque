@@ -58,6 +58,31 @@ class ReportRepositoryEloquent implements ReportRepositoryInterface
             return $e->getMessage();
         }
     }
+
+    public function requisitionProductReport($data)
+    {
+        $date[] = $data['dateIni'];
+        $date[] = $data['dateFin'];
+
+        try {
+            return DB::select("SELECT
+                pr.id AS número,
+                u.name AS nome,
+                pr.date AS dataRetirada,
+                    p.name AS nomeProduto,
+                    ipr.quantity AS quantidade
+                        FROM
+                            tb_product_requisition AS pr
+                                LEFT JOIN tb_user AS u ON (pr.user_id = u.id)
+                                LEFT JOIN tb_item_product_requisition AS ipr ON (ipr.product_requisition_id = pr.id)
+                                LEFT JOIN tb_product AS p ON (p.id = ipr.product_id)
+                                    WHERE pr.date between '".$date[0]."' and '".$date[1]."';");
+
+        } catch (\Exception $e) {
+
+            return $e->getMessage();
+        }
+    }
 }
 
 ?>

@@ -60,5 +60,16 @@ class ReportService
 
         return $listValue = ['data' => $data, 'totalQuant' => $totalQuant, 'totalPrecoCusto' => $totalPrecoCusto, 'totalPrecoVenda' => $totalPrecoVenda];
     }
+
+    public function requisitionProductReport($request)
+    {
+        $request['dateIni'] = DateTime::createFromFormat('d/m/Y H:i:s', $request['dateIni'].' 00:00:00');
+        $request['dateIni'] = $request['dateIni']->format('Y-m-d');
+
+        $request['dateFin'] = DateTime::createFromFormat('d/m/Y H:i:s', $request['dateFin'].' 00:00:00');
+        $request['dateFin'] = $request['dateFin']->format('Y-m-d');
+
+        return $this->repo->requisitionProductReport($request);
+    }
 }
 ?>

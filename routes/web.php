@@ -119,4 +119,5 @@ Route::prefix('inventory')->group(function() {
 Route::prefix('report')->group(function() {
     Route::post('/', [ReportController::class, 'entryReport'])->name('report');
     Route::post('/outPut', [ReportController::class, 'outputReport'])->name('reportOutput');
+    Route::post('/reportRequisitionProduct', [ReportController::class, 'reportProductRequisition'])->name('reportRequisition');
 });
