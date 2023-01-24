@@ -66,7 +66,7 @@ class ReportRepositoryEloquent implements ReportRepositoryInterface
 
         try {
             return DB::select("SELECT
-                pr.id AS número,
+                pr.id AS numero,
                 u.name AS nome,
                 pr.date AS dataRetirada,
                     p.name AS nomeProduto,
@@ -76,7 +76,7 @@ class ReportRepositoryEloquent implements ReportRepositoryInterface
                                 LEFT JOIN tb_user AS u ON (pr.user_id = u.id)
                                 LEFT JOIN tb_item_product_requisition AS ipr ON (ipr.product_requisition_id = pr.id)
                                 LEFT JOIN tb_product AS p ON (p.id = ipr.product_id)
-                                    WHERE pr.date between '".$date[0]."' and '".$date[1]."';");
+                                    WHERE pr.date between '".$date[0]."' and '".$date[1]."' and u.name = 'Gabriel'");
 
         } catch (\Exception $e) {
 

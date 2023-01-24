@@ -41,7 +41,15 @@ body {
 }
 
 .total {
+    border-top: 1px solid #000000;
+}
+
+.totalGeral {
     border-top: 2px solid #000000;
+}
+
+.title-requisition-number {
+    font-weight: bold;
 }
 
 .table>:not(caption)>*>* {

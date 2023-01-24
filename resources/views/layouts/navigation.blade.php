@@ -116,6 +116,10 @@
                             <label for="dateFin" class="form-label">Data Final</label>
                             <input type="text" class="form-control" id="dateFin" name="dateFin" aria-describedby="dateFin" placeholder="31/01/2022">
                         </div>
+                        <div class="mb-3">
+                            <label for="requisicao" class="form-label">Número da requisição</label>
+                            <input type="text" class="form-control" id="requisicao" name="requisicao" aria-describedby="requisicao" placeholder="Ex: 1">
+                        </div>
                     </form>
                 </div>
             </div>

@@ -45,18 +45,13 @@ class ReportController extends Controller
     {
         $data = $this->service->requisitionProductReport($request);
 
-        // Coloca o número das requisicoes em uma lista
-        $listIdRequisitionGroup = [];
-        foreach ($data as $item) {
-            if(!in_array($item->número, $listIdRequisitionGroup)){
-                $listIdRequisitionGroup[] = $item->número;
-            }
-        }
-
-        $listRequisitionProduct = $data;
+        $listRequisitionProduct = $data['data'];
+        $listRequisicao = $data['listRequisicao'];
+        $totalQuant = $data['totalQuant'];
         $dateIni = $request['dateIni'];
         $dateFin = $request['dateFin'];
 
-        return view('requisitionProductReport', compact('listRequisitionProduct','listIdRequisitionGroup', 'dateIni', 'dateFin'));
+        //dd($listRequisicao);
+        return view('requisitionProductReport', compact('listRequisitionProduct','listRequisicao', 'dateIni', 'dateFin', 'totalQuant'));
     }
 }
