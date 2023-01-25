@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <!-- Modal form Users -->
+    <!-- Modal form entrada de produto -->
     <div class="modal fade" id="entryProductForm" tabindex="-1" role="dialog" aria-labelledby="modalFomrEntryProduct" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -136,17 +136,18 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="row justify-content-center">
-                    <div class="col-10 mt-2">
-                        <div class="alert alert-success text-center" id="successEdit" role="alert">
-                            Itens adiconado com sucesso!
-                        </div>
-                    </div>
-                </div>
+{{--                <div class="row justify-content-center">--}}
+{{--                    <div class="col-10 mt-2">--}}
+{{--                        <div class="alert alert-success text-center" id="successEdit" role="alert">--}}
+{{--                            Itens adiconado com sucesso!--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
 
                 <div class="modal-body">
                     <div class="itemAddEntryProducts_data">
                         <form action="" class="form_add_itens_product" id="form_add_itens_product">
+                            <input hidden type="text" name="id" id="id" class="idItem" />
                             <button type="button" id="add-item-product" class="btn btn-success add-item-product"><i class='bx bx-plus nav_icon' style="font-size: 15px"></i> Adicionar Itens</button>
                             <div id="form-add-item-product" class="form-add-item-product"></div>
                         </form>
@@ -154,8 +155,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary close-itens-add-product" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary save-itens-add-product" onclick="event.preventDefault();
-          document.getElementById('form_add_itens_product').submit();">Salvar</button>
+                    <button type="button" class="btn btn-primary save-itens-add-product">Salvaraa</button>
                 </div>
             </div>
         </div>

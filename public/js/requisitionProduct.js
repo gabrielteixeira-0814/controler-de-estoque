@@ -44,9 +44,9 @@ function carregarTabelaRequisitionProduct(pag) {
     $.ajax({
     url: "/requisition/product",
     method: 'GET',
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
     data: { pag: pag, pag_limit: 5 }
         }).done(function(data){
 

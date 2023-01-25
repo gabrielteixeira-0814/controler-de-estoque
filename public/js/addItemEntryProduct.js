@@ -6,15 +6,25 @@
 
 
 // Create form de itens de products
-var x = 1;
+
+
+ $(document).on('click', '#entryProductId', function(e) {
+    var id = $(this).val();
+     $('.idItem').val(id);
+ });
+
+var x = 0;
 $(document).on('click', '.add-item-product', function(e) {
     e.preventDefault();
     x++
-    $('#form-add-item-product').append("<div class='row mt-3 form-group-itens-product-"+x+"'><div class='col-md-8'><select id='form-select-"+x+"' class='form-select' aria-label=''></select></div><div class='col-3 type-number'><input step='1' value='1' type='number' class='form-control' /></div><div class='col-1 d-flex align-items-center'><i style='color: #e93535; font-size: 16px;cursor: pointer;' class='bx bxs-trash remove_field'></i></div></div></div>");
+    $('#form-add-item-product').append("<div class='row mt-3 form-group-itens-product-"+x+"'><div class='col-md-8'><select id='form-select-"+x+"' name='name-select-"+x+"' class='form-select' aria-label=''></select></div><div class='col-3 type-number'><input step='1' value='1' type='number' id='quantity-"+x+"' name='name-quantity-"+x+"' class='form-control' /></div><div class='col-1 d-flex align-items-center'><i style='color: #e93535; font-size: 16px;cursor: pointer;' class='bx bxs-trash remove_field'></i></div></div></div>");
 
     $.ajax({
         url: "/item/entry/list/product",
         method: 'GET',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
             }).done(function(data){
             $.each(data, function( k, v ) {
                 $("#form-select-"+x+"").append("<option value='"+ v.id +"'>"+ v.name +"</option>");
@@ -30,38 +40,42 @@ $(document).on("click", ".remove_field", function(e) {
   });
 
 
-// Create Entry Product
-$(document).on('click', '.saveForm', function(e) {
-   // $(".saveForm").show();
+// Create Item Entry Product
+$(document).on('click', '.save-itens-add-product', function(e) {
 
-    value = $(".form_add_itens_product").serialize();
+    value = $("#form_add_itens_product").serialize();
 
-    // $.ajax({
-    //     url: "/entry/product/create",
-    //     method: 'POST',
-    //     data: value,
-    //         }).done(function(data){
-    //         console.log(data);
+    console.log(value);
 
-    //         if(data) {
-    //             $("#successCreate").show();
-    //             $(".saveForm").hide();
+    $.ajax({
+        url: "/item/entry/product/create",
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: value,
+            }).done(function(data){
+            console.log(data);
 
-    //             carregarListItemEntryProduct(0);
-    //         }
-    //     })
-    //     .fail(function(error) {
+            // if(data) {
+            //     $("#successCreate").show();
+            //     $(".saveForm").hide();
+            //
+            //     carregarListItemEntryProduct(0);
+            // }
+        })
+        .fail(function(error) {
 
-    //         $.each(error.responseJSON.errors, function( k, v ) {
-    //             $('.msgError').append("<div class='alert alert-danger errorMsg' role='alert'>" + v + "</div>");
-    //           });
+            $.each(error.responseJSON.errors, function( k, v ) {
+                $('.msgError').append("<div class='alert alert-danger errorMsg' role='alert'>" + v + "</div>");
+              });
 
-    //           $( ".errorMsg" ).fadeIn(300).delay(3000).fadeOut(300);
+              $( ".errorMsg" ).fadeIn(300).delay(3000).fadeOut(300);
 
-    //           setTimeout(function() {
-    //             $( ".errorMsg" ).remove();
-    //         }, 4000);
-    //       });
+              setTimeout(function() {
+                $( ".errorMsg" ).remove();
+            }, 4000);
+          });
 });
 
 

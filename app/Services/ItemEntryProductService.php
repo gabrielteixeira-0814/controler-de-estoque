@@ -3,21 +3,43 @@
 namespace App\Services;
 use App\Repositories\ItemEntryProductRepositoryInterface;
 use App\Repositories\EntryProductRepositoryInterface;
+use App\Services\ProductService;
 use Validator;
 
 
 class ItemEntryProductService
 {
     private $repo;
+    private $serviceProduct;
 
-    public function __construct(ItemEntryProductRepositoryInterface $repo, ItemEntryProductRepositoryInterface $repoInvetory)
+    public function __construct(ItemEntryProductRepositoryInterface $repo, ItemEntryProductRepositoryInterface $repoInvetory, ProductService $serviceProduct)
     {
         $this->repo = $repo;
         $this->repoInvetory = $repoInvetory;
+        $this->serviceProduct = $serviceProduct;
     }
 
     public function store($request)
     {
+        // Pega lista de produto do banco
+        $product = $this->serviceProduct;
+        $data['search'] = false;
+        $products = $product->getList($data);
+
+        $listItemProducts = [];
+        foreach ($products as $product) {
+
+            $id = strval($product->id);
+
+            $name = "name-select-".$id;
+
+            $listItemProducts[] = [
+                "idProduct" => $request[$name]
+            ];
+        }
+
+        return $name;
+
         // Converte number(values)
         $request['entry_product_id'] = intval($request['entry_product_id']);
         $request['product_id'] = intval($request['product_id']);

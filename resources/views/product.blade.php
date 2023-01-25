@@ -30,7 +30,7 @@
         </div>
     </div>
 
-    <!-- Modal form Users -->
+    <!-- Modal form Product -->
     <div class="modal fade" id="productForm" tabindex="-1" role="dialog" aria-labelledby="modalFomrProduct" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
