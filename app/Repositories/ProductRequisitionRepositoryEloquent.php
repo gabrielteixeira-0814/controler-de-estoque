@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 Use DB;
+use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 
 class ProductRequisitionRepositoryEloquent implements ProductRequisitionRepositoryInterface
 {
@@ -25,10 +26,27 @@ class ProductRequisitionRepositoryEloquent implements ProductRequisitionReposito
         }
     }
 
-    public function getList()
+    public function getList($conf)
     {
+        $page = $conf['pag'];
+        $perPage = $conf['limit'];
+        $offset = ($page * $perPage) - $perPage;
+
         try {
-            return DB::select('select * from '.$this->table);
+            $data = DB::select("select pr.id,
+	                                   u.name,
+	                                   pr.date
+    	                                    from ".$this->table." as pr LEFT JOIN tb_user as u ON(pr.user_id = u.id)");
+            $collect = collect($data);
+
+            $paginationData = new Paginator(
+                $collect->forPage($page, $perPage),
+                $collect->count(),
+                $perPage,
+                $page
+            );
+
+            return $paginationData;
 
         } catch (\Exception $e) {
 

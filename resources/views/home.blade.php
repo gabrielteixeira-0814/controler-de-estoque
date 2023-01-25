@@ -37,10 +37,10 @@
                     </a>
                 </div>
                 <div class="col-md-6 mt-4">
-                    <a href="#" class="bloco-link requisitionProduct" data-toggle="modal" data-target="#message">
+                    <a href="{{ route('pageRequisicaoProduct') }}" class="bloco-link requisitionProduct">
                         <div class="border bloco text-white p-5 rounded shadow text-center">
                             <div class="d-inline h3" style="margin-right: 25px;">Requisição de produtos</div>
-                            <div class="d-inline h3"><i class='bx bx-clipboard'></i></i></div>
+                            <div class="d-inline h3"><i class='bx bx-clipboard'></i></div>
                         </div>
                     </a>
                 </div>

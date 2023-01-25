@@ -48,7 +48,6 @@ class UserService
             return $users;
 
         }else {
-
             if($pag > 0) {
                 $conf = ['limit' =>  $pag_limit, 'pag' => $pag];
                 $users = $this->repo->getList($conf);

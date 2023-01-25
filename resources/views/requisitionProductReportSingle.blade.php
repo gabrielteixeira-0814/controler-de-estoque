@@ -4,10 +4,6 @@
 <div class="container mt-5">
     <div class="py-5 mb-5">
         <div class="border border-5 p-5">
-            <div>
-                <div class="text-right mb-2" style="text-align: right !important; font-weight: bold; font-size: 12px;">Data Inicial: {{ $dateIni ? date("d/m/Y", strtotime($dateIni)) : "-" }}</div>
-                <div class="text-right" style="text-align: right !important; font-weight: bold; font-size: 12px; "><span class="" style="padding-right: 7px;">Data Final: {{ $dateFin ? date("d/m/Y", strtotime($dateFin)) : "-" }}</span></div>
-            </div>
             <div class="text-center my-3"><h3>Relatório de Requisição de Produto</h3></div>
             <div class="row justify-content-center">
                 <div class="container mt-5">
@@ -31,14 +27,14 @@
                                     </tr>
                                 </thead>
 
-                                @foreach($listRequisicao as $requisitionGroup)
+
                                 <tr class="">
                                     <td>
-                                        <div class="title-requisition-number p-2">N° da requisição: {{ $requisitionGroup['requisition'] }}</div>
-                                        <div class="title-requisition-number p-2 text-center">{{ $requisitionGroup['name'] }}</div>
+                                        <div class="title-requisition-number p-1">N° da requisição: {{ $listRequisicao['requisition'] }}</div>
+                                        <div class="title-requisition-number text-center mt-2">{{ $listRequisicao['name'] }}</div>
                                         @foreach ($listRequisitionProduct as $requisitionProduct)
 
-                                            @if($requisitionProduct->numero == $requisitionGroup['requisition'])
+                                            @if($requisitionProduct->numero == $listRequisicao['requisition'])
                                                 <tr>
                                                     <td class="text-center"></td>
                                                     <td class="text-center">
@@ -54,31 +50,6 @@
                                             @endif
                                         @endforeach
                                     </td>
-                                </tr>
-                                <tr class="text-center">
-                                    <td class="total"></td>
-                                    <td class="total"></td>
-                                    <td class="total"></td>
-                                    <td class="valueTable line total"> <span class="p-4">Total:</span> {{ $requisitionGroup['totalPorRequisicao'] ? number_format($requisitionGroup['totalPorRequisicao'], 2, ',', '.') : "-" }}</td>
-                                </tr>
-                                @endforeach
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
                                 </tr>
                                 <tr>
                                     <td></td>

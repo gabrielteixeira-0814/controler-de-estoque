@@ -90,6 +90,7 @@ Route::prefix('item')->group(function() {
 
 // Requisition Product
 Route::prefix('requisition')->group(function() {
+    Route::get('/', [ProductRequisitionController::class, 'index'])->name('pageRequisicaoProduct');
     Route::get('/product', [ProductRequisitionController::class, 'getList']);
     Route::get('/product/{id}', [ProductRequisitionController::class, 'get']);
     Route::post('/product/create', [ProductRequisitionController::class, 'store']);
@@ -120,4 +121,5 @@ Route::prefix('report')->group(function() {
     Route::post('/', [ReportController::class, 'entryReport'])->name('report');
     Route::post('/outPut', [ReportController::class, 'outputReport'])->name('reportOutput');
     Route::post('/reportRequisitionProduct', [ReportController::class, 'reportProductRequisition'])->name('reportRequisition');
+    Route::get('/reportRequisitionProductSingle/{id}', [ReportController::class, 'reportProductRequisitionSingle'])->name('reportRequisitionSingle');
 });

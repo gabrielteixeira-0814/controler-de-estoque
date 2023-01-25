@@ -44,7 +44,6 @@ class ReportController extends Controller
     public function reportProductRequisition(Request $request)
     {
         $data = $this->service->requisitionProductReport($request);
-
         $listRequisitionProduct = $data['data'];
         $listRequisicao = $data['listRequisicao'];
         $totalQuant = $data['totalQuant'];
@@ -53,5 +52,16 @@ class ReportController extends Controller
 
         //dd($listRequisicao);
         return view('requisitionProductReport', compact('listRequisitionProduct','listRequisicao', 'dateIni', 'dateFin', 'totalQuant'));
+    }
+
+    public function reportProductRequisitionSingle($id)
+    {
+        $data = $this->service->requisitionProductReportSingle($id);
+        $listRequisitionProduct = $data['data'];
+        $listRequisicao = $data['listRequisicao'];
+        $totalQuant = $data['totalQuant'];
+
+        //dd($listRequisicao);
+        return view('requisitionProductReportSingle', compact('listRequisitionProduct','listRequisicao', 'totalQuant'));
     }
 }

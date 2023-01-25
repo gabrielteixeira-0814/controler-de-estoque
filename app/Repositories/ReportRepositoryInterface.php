@@ -10,6 +10,7 @@ interface ReportRepositoryInterface
     public function entryReport(array $data);
     public function outputReport(array $data);
     public function requisitionProductReport(array $data);
+    public function requisitionProductReportSingle($id);
 }
 
 ?>

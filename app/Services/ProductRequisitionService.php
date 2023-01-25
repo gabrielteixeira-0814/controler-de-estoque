@@ -35,9 +35,22 @@ class ProductRequisitionService
         return $this->repo->store($data);
     }
 
-    public function getList()
+    public function getList($request)
     {
-        return $this->repo->getList();
+        $pag_limit = $request['pag_limit'];
+        $pag = $request['pag'];
+
+        if($request['search']){
+            $users = $this->repo->getListSearch($request['search']);
+            return $users;
+
+        }else {
+            if($pag > 0) {
+                $conf = ['limit' =>  $pag_limit, 'pag' => $pag];
+                $users = $this->repo->getList($conf);
+                return $users;
+            }
+        }
     }
 
     public function get($id)

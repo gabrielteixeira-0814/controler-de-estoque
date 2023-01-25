@@ -45,8 +45,6 @@ class UserRepositoryEloquent implements UserRepositoryInterface
 
             return $paginationData;
 
-           // return new Paginator(array_slice($users, $offset, $perPage, true), count($users), $perPage, $page);
-
         } catch (\Exception $e) {
 
             return $e->getMessage();

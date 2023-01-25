@@ -16,11 +16,19 @@ class ReportService
 
     public function entryReport($request)
     {
-        $request['dateIni'] = DateTime::createFromFormat('d/m/Y H:i:s', $request['dateIni'].' 00:00:00');
-        $request['dateIni'] = $request['dateIni']->format('Y-m-d');
+        if(!$request['dateIni']) {
+            $request['dateIni'] = false;
+        }else{
+            $request['dateIni'] = DateTime::createFromFormat('d/m/Y H:i:s', $request['dateIni'].' 00:00:00');
+            $request['dateIni'] = $request['dateIni']->format('Y-m-d');
+        }
 
-        $request['dateFin'] = DateTime::createFromFormat('d/m/Y H:i:s', $request['dateFin'].' 00:00:00');
-        $request['dateFin'] = $request['dateFin']->format('Y-m-d');
+        if(!$request['dateFin']) {
+            $request['dateFin'] = false;
+        }else{
+            $request['dateFin'] = DateTime::createFromFormat('d/m/Y H:i:s', $request['dateFin'].' 00:00:00');
+            $request['dateFin'] = $request['dateFin']->format('Y-m-d');
+        }
 
         $data = $this->repo->entryReport($request);
 
@@ -130,11 +138,13 @@ class ReportService
 
                  if($item->numero == $requisition){
                      $totalPorRequisicao = $totalPorRequisicao + $item->quantidade;
+                     $name = $item->nome;
                 }
              }
 
             $listRequisicao[] = [
                 "requisition" => $requisition,
+                "name" => $name,
                 "totalPorRequisicao" => $totalPorRequisicao
             ];
         }
@@ -143,6 +153,57 @@ class ReportService
             'data' => $data,
             'totalQuant' => $totalQuant,
             'listRequisicao' => $listRequisicao
+        ];
+
+        return $listValue;
+    }
+
+    public function requisitionProductReportSingle($id)
+    {
+        if(!$id){
+            $id = false;
+        }
+
+        $data =  $this->repo->requisitionProductReportSingle($id);
+
+        $totalQuant = 0;
+        $listRequisicao = [];
+        foreach ($data as $item) {
+
+            // Coloca o número das requisicoes em uma lista
+            if(!in_array($item->numero, $listRequisicao)){
+                // Converte int para string para adicionar 5 digitos
+                $itens = strval($item->numero);
+
+                $countIdRequisition = strlen($itens);
+
+                if($countIdRequisition == 1){
+                    $itens = "0000".$itens;
+                }
+                if($countIdRequisition == 2){
+                    $itens = "000".$itens;
+                }
+                if($countIdRequisition == 3){
+                    $itens = "00".$itens;
+                }
+                if($countIdRequisition == 4){
+                    $itens = "0".$itens;
+                }
+
+                $listRequisicao[] = [
+                    'requisition' => $itens,
+                    'name' => $item->nome
+                ];
+            }
+
+            // Total geral das quantidades de produtos
+            $totalQuant = $totalQuant + $item->quantidade;
+        }
+
+        $listValue = [
+            'data' => $data,
+            'totalQuant' => $totalQuant,
+            'listRequisicao' => $listRequisicao[0]
         ];
 
         return $listValue;

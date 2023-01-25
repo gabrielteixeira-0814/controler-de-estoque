@@ -13,9 +13,17 @@ class ProductRequisitionController extends Controller
         $this->service = $service;
     }
 
-    public function getList()
+    public function index()
     {
-        return $this->service->getList();
+        return view('requisitionProduct');
+    }
+
+    public function getList(Request $request)
+    {
+        $search = !$request['search'] ? true : false;
+        $listRequisitionProduct = $this->service->getList($request);
+
+        return view('list.listRequisitionProduct', compact('listRequisitionProduct', 'search'))->render();
     }
 
     public function get($id)
