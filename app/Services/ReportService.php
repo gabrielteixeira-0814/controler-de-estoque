@@ -88,10 +88,7 @@ class ReportService
             $request['requisicao'] = false;
         }
 
-        dd($request['requisicao']);
-
         $data =  $this->repo->requisitionProductReport($request);
-
         $totalQuant = 0;
         $listIdRequisitionGroup = [];
         foreach ($data as $item) {

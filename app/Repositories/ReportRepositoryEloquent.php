@@ -61,8 +61,21 @@ class ReportRepositoryEloquent implements ReportRepositoryInterface
 
     public function requisitionProductReport($data)
     {
-        $date[] = $data['dateIni'];
-        $date[] = $data['dateFin'];
+        // Criterios
+        if($data['dateIni'] && $data['dateFin'] && $data['requisicao']){
+            $date[] = $data['dateIni'];
+            $date[] = $data['dateFin'];
+
+            $dateSql = "WHERE pr.date between '".$date[0]."' and '".$date[1]."' and pr.id = '".$data['requisicao']."'";
+        }
+
+        if($data['dateIni'] == false and $data['dateFin'] == false and $data['requisicao']){
+            $dateSql = "WHERE pr.id = '".$data['requisicao']."'";
+        }
+
+        if($data['dateIni'] == false and $data['dateFin'] == false and $data['requisicao'] == false){
+            $dateSql = "";
+        }
 
         try {
             return DB::select("SELECT
@@ -75,8 +88,7 @@ class ReportRepositoryEloquent implements ReportRepositoryInterface
                             tb_product_requisition AS pr
                                 LEFT JOIN tb_user AS u ON (pr.user_id = u.id)
                                 LEFT JOIN tb_item_product_requisition AS ipr ON (ipr.product_requisition_id = pr.id)
-                                LEFT JOIN tb_product AS p ON (p.id = ipr.product_id)
-                                    WHERE pr.date between '".$date[0]."' and '".$date[1]."' and u.name = 'Gabriel'");
+                                LEFT JOIN tb_product AS p ON (p.id = ipr.product_id) ".$dateSql);
 
         } catch (\Exception $e) {
 
