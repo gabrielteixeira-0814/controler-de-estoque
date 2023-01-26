@@ -40,7 +40,21 @@ class ItemEntryProductRepositoryEloquent implements ItemEntryProductRepositoryIn
     public function get($id)
     {
         try {
-            return DB::select('select * from '.$this->table.' where id = ?',[$id]);
+            return DB::select("
+                        SELECT
+                            iep.entry_product_id,
+                            iep.product_id,
+                            iep.quantity,
+                            iep.value,
+                            ep.id,
+                            ep.entryDate,
+                            ep.total,
+                            p.name,
+                            p.type
+                        FROM tb_item_entry_product AS iep
+                        LEFT JOIN tb_entry_product AS ep ON(iep.entry_product_id = ep.id)
+                        LEFT JOIN tb_product AS p ON(iep.product_id = p.id)
+                        WHERE iep.entry_product_id = ".$id);
 
         } catch (\Exception $e) {
 

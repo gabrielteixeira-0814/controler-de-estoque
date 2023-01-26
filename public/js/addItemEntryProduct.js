@@ -1,17 +1,53 @@
- /*** Table Products ***/
+ /*** Table Item Entry Products ***/
 
  $(document).ready(function(){
     $("#successDelete").hide(); // hide message success delete
 });
 
-
 // Create form de itens de products
-
-
  $(document).on('click', '#entryProductId', function(e) {
     var id = $(this).val();
      $('.idItem').val(id);
  });
+
+ // Table Itens Entry Product
+
+ $(document).on('click', '.list', function(e) {
+     $(".modalGif").hide();
+     $("#gif").show();
+
+     var id = $(this).val();
+
+     console.log(id);
+     carregarTabelaItemEntryProduct(id);
+
+ });
+
+ function carregarTabelaItemEntryProduct(id) {
+
+     // Gif
+     //$('.itensEntryProducts_data').html('<div class="d-flex justify-content-center mt-3 loading">Loading&#8230;</div>');
+
+     $.ajax({
+         url: "/item/entry/product/"+ id + "",
+         method: 'GET',
+         headers: {
+             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+         },
+         data: ""
+     }).done(function(data){
+
+         console.log(data);
+
+         // setTimeout(function() {
+         //     if(data) {
+         //         $('.itensEntryProducts_data').html(data);
+         //     }else {
+         //         $('.itensEntryProducts_data').html('<div class="">Error</div>');
+         //     }
+         // }, 1000);
+     });
+ }
 
 var x = 0;
 $(document).on('click', '.add-item-product', function(e) {
@@ -32,13 +68,12 @@ $(document).on('click', '.add-item-product', function(e) {
         });
 });
 
-//user click on remove text
+//item product click on remove text
 $(document).on("click", ".remove_field", function(e) {
     e.preventDefault();
     $(".form-group-itens-product-"+x+"").remove();
     x--;
   });
-
 
 // Create Item Entry Product
 $(document).on('click', '.save-itens-add-product', function(e) {
@@ -57,12 +92,12 @@ $(document).on('click', '.save-itens-add-product', function(e) {
             }).done(function(data){
             console.log(data);
 
-            // if(data) {
-            //     $("#successCreate").show();
-            //     $(".saveForm").hide();
-            //
-            //     carregarListItemEntryProduct(0);
-            // }
+            if(data) {
+                $("#successCreate").show();
+                $(".saveForm").hide();
+
+                carregarListItemEntryProduct(0);
+            }
         })
         .fail(function(error) {
 
@@ -78,12 +113,10 @@ $(document).on('click', '.save-itens-add-product', function(e) {
           });
 });
 
-
  // close modal create
  $(document).on('click', '.closeCreate', function(e) {
     $(".saveForm").show();
 });
-
 
 // Show Entry Product
 $(document).on('click', '.edit', function(e) {
@@ -123,7 +156,6 @@ $(document).on('click', '.edit', function(e) {
             }, 1000);
         });
 });
-
 
 // Edit Entry Product
 $(document).on('click', '.saveEdit', function(e) {
@@ -167,7 +199,6 @@ $(document).on('click', '.saveEdit', function(e) {
 $(document).on('click', '.closeEdit', function(e) {
     $(".saveEdit").show();
 });
-
 
 // Delete Entry Product
 $(document).on('click', '.delete', function(e) {
