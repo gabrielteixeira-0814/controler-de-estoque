@@ -1,32 +1,34 @@
 <table class='table'>
-    <tr>
+    <tr class="text-center">
         <th scope="col">
-            Código de entrada
+            Código do produto
         </th>
         <th scope="col">
-            Data de Entrada
+            Produto
         </th>
         <th scope="col">
-            Total
+            Quantidade
         </th>
         <th scope="col">
             Ações
         </th>
     </tr>
 
-    @foreach ($listEntryProduct as $entryProduct)
-        <tr>
+    @foreach ($listItemEntryProduct as $itemEntryProduct)
+        <tr class="text-center">
             <td>
-                {{ $entryProduct->id }}
+                {{ $itemEntryProduct->product_id }}
             </td>
             <td>
-                {{ date("d/m/Y", strtotime($entryProduct->entryDate)) }}
+                {{ $itemEntryProduct->name }}
+{{--                {{ date("d/m/Y", strtotime($entryProduct->entryDate)) }}--}}
             </td>
             <td>
-                {{ $entryProduct->total ? str_replace('.', ',', $entryProduct->total) : "-" }}
+                {{ $itemEntryProduct->quantity }}
+{{--                {{ $entryProduct->total ? str_replace('.', ',', $entryProduct->total) : "-" }}--}}
             </td>
             <td>
-                <button class='delete actionButton' id='deleteEntryProduct' value="{{ $entryProduct->id }}" name="{{ $entryProduct ->id }}" data-toggle="tooltip" data-placement="top" title="Deleta" style="color: #e93535; font-size: 16px;" ><i class='bx bxs-trash'></i></button>
+                <button class='delete actionButton' id='deleteEntryProduct' value="{{ $itemEntryProduct->id }}" name="{{ $itemEntryProduct ->id }}" data-toggle="tooltip" data-placement="top" title="Deleta" style="color: #e93535; font-size: 16px;" ><i class='bx bxs-trash'></i></button>
             </td>
         </tr>
     @endforeach

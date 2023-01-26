@@ -26,7 +26,7 @@
  function carregarTabelaItemEntryProduct(id) {
 
      // Gif
-     //$('.itensEntryProducts_data').html('<div class="d-flex justify-content-center mt-3 loading">Loading&#8230;</div>');
+     $('.itemEntryProducts_data').html('<div class="d-flex justify-content-center mt-3 loading">Loading&#8230;</div>');
 
      $.ajax({
          url: "/item/entry/product/"+ id + "",
@@ -39,13 +39,13 @@
 
          console.log(data);
 
-         // setTimeout(function() {
-         //     if(data) {
-         //         $('.itensEntryProducts_data').html(data);
-         //     }else {
-         //         $('.itensEntryProducts_data').html('<div class="">Error</div>');
-         //     }
-         // }, 1000);
+         setTimeout(function() {
+             if(data) {
+                 $('.itemEntryProducts_data').html(data);
+             }else {
+                 $('.itemEntryProducts_data').html('<div class="">Error</div>');
+             }
+         }, 1000);
      });
  }
 

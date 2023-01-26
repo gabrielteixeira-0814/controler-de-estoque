@@ -25,7 +25,8 @@ class ItemEntryProductController extends Controller
 
     public function get($id)
     {
-        return $this->service->get($id);
+        $listItemEntryProduct = $this->service->get($id);
+        return view('list.listItemEntryProduct', compact('listItemEntryProduct'));
     }
 
     public function store(Request $request)
