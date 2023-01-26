@@ -155,7 +155,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary close-itens-add-product" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary save-itens-add-product">Salvaraa</button>
+                    <button type="button" class="btn btn-primary save-itens-add-product">Salvar</button>
                 </div>
             </div>
         </div>
